@@ -1,3 +1,15 @@
+/**
+ * headContentTemplate
+ * 
+ * @description Head tag builder that contains most used meta tags
+ *
+ * @param {*} {
+ *   description = meta tag for description,
+ *   keywords = meta tag for keywords,
+ *   author = meta tag for author
+ * }
+ * @returns String
+ */
 function headContentTemplate({
   description, keywords, author
 }) {

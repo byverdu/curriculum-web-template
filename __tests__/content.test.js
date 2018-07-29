@@ -5,9 +5,9 @@ import {
 describe('Content data', () => {
   describe('Head Content data', () => {
     const headProperties = [
-      {key: 'description', value: 'Albert Vallverdu Resume'},
+      {key: 'description', value: 'John Doe Resume'},
       {key: 'keywords', value: 'HTML5, SCSS, JavaScript, Node, Jest, ES6, Gulp'},
-      {key: 'author', value: '@byverdu'}
+      {key: 'author', value: '@DoeJohn'}
     ];
   
     it( 'should be defined', () => {
