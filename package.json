@@ -1,0 +1,43 @@
+{
+  "name": "curriculum-web-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "gulp start",
+    "build": "gulp build",
+    "dev": "gulp dev"
+  },
+  "repository": {
+    "url": "git@github.com:byverdu/curriculum-web-template.git"
+  },
+  "author": " <byverdu@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.5",
+    "babelify": "^8.0.0",
+    "browserify": "^16.2.2",
+    "del": "^3.0.0",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-live-server": "^0.0.31",
+    "gulp-notify": "^3.2.0",
+    "gulp-rename": "^1.3.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "gulp-uglify-es": "^1.0.4",
+    "gulp-util": "^3.0.8",
+    "require-dir": "^1.0.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.11.0"
+  },
+  "dependencies": {
+    "gulp-base64": "^0.1.3"
+  }
+}
