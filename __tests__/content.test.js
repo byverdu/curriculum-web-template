@@ -1,14 +1,9 @@
-import {config} from '../src/config';
+import {
+  headContentConfig
+} from '../src/config';
 
 describe('Content data', () => {
-  it( 'should be defined', () => {
-    expect(config).toBeDefined();
-  });
-
   describe('Head Content data', () => {
-    const {
-      headContentConfig
-    } = config;
     const headProperties = [
       {key: 'description', value: 'Albert Vallverdu Resume'},
       {key: 'keywords', value: 'HTML5, SCSS, JavaScript, Node, Jest, ES6, Gulp'},
