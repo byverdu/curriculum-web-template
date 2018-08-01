@@ -1,6 +1,19 @@
 /* eslint-disable func-names */
 module.exports = ( function () {
+  /**
+   * newLineAndTabsBuilder
+   * @description Creates a string with a new line and as tabs
+   * as it's been specified in the parameter
+   * 
+   * @param {Number} numberTabs
+   * 
+   * @returns String
+   */
   function newLineAndTabsBuilder( numberTabs ) {
+    if (isNaN(Number(numberTabs))) {
+      return '';
+    }
+
     let newLine = '\n';
 
     for ( let i = 1; i <= numberTabs; i += 1 ) {
@@ -22,8 +35,15 @@ module.exports = ( function () {
     }, '' );
   }
 
-  function htmlCommentBuilder( text ) {
-    return `${oneTab}<!-- ${text} -->\n`;
+  function htmlCommentBuilder(
+    text, withTab = 0, withNewLine = false
+  ) {
+    const tempTab = withTab > 0 ?
+      newLineAndTabsBuilder(withTab) :
+      '';
+    const tempNewLine = withNewLine ? '\n' : '';
+    
+    return `${tempTab}<!-- ${text} -->${tempNewLine}`;
   }
 
   function dividerBuilder() {
@@ -111,6 +131,7 @@ module.exports = ( function () {
   }
 
   return {
+    newLineAndTabsBuilder,
     asideItemBuilder,
     htmlTagBuilder,
     experienceBuilder,

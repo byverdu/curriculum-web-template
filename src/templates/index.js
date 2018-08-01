@@ -1,9 +1,8 @@
 /**
  * headContentTemplate
- * 
  * @description Head tag builder that contains most used meta tags
  *
- * @param {*} {
+ * @param {Object} {
  *   description = meta tag for description,
  *   keywords = meta tag for keywords,
  *   author = meta tag for author
