@@ -23,6 +23,18 @@ module.exports = ( function () {
     return newLine;
   }
 
+  function htmlCommentBuilder(text, withTab = 0) {
+    let tempTab = '';
+
+    if (withTab > 0) {
+      for ( let i = 1; i <= withTab; i += 1 ) {
+        tempTab += '\t';
+      }
+    }
+    
+    return `${tempTab}<!-- ${text} -->\n`;
+  }
+
   const oneTab = newLineAndTabsBuilder( 1 );
   const twoTabs = newLineAndTabsBuilder( 2 );
   const threeTabs = newLineAndTabsBuilder( 3 );
@@ -35,16 +47,7 @@ module.exports = ( function () {
     }, '' );
   }
 
-  function htmlCommentBuilder(
-    text, withTab = 0, withNewLine = false
-  ) {
-    const tempTab = withTab > 0 ?
-      newLineAndTabsBuilder(withTab) :
-      '';
-    const tempNewLine = withNewLine ? '\n' : '';
-    
-    return `${tempTab}<!-- ${text} -->${tempNewLine}`;
-  }
+  
 
   function dividerBuilder() {
     return '<div class="divider"></div>';
