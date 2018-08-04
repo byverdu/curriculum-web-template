@@ -4,9 +4,7 @@ module.exports = ( function () {
    * newLineAndTabsBuilder
    * @description Creates a string with a new line and as tabs
    * as it's been specified in the parameter
-   * 
    * @param {Number} numberTabs
-   * 
    * @returns String
    */
   function newLineAndTabsBuilder( numberTabs ) {
@@ -23,6 +21,13 @@ module.exports = ( function () {
     return newLine;
   }
 
+  /**
+   * htmlCommentBuilder
+   * @description Creates an html comment with possible tabs
+   * @param {string} text
+   * @param {number} [withTab=0]
+   * @returns String
+   */
   function htmlCommentBuilder(text, withTab = 0) {
     let tempTab = '';
 
@@ -35,6 +40,17 @@ module.exports = ( function () {
     return `${tempTab}<!-- ${text} -->\n`;
   }
 
+  /**
+   * dividerBuilder
+   * @description Some markup that could be used to differentiate
+   * sections in CV, makes sense use it when rendering the markup
+   * @param {string} [className='divider']
+   * @returns String
+   */
+  function dividerBuilder(className = 'divider') {
+    return `<div class="${className}"></div>`;
+  }
+
   const oneTab = newLineAndTabsBuilder( 1 );
   const twoTabs = newLineAndTabsBuilder( 2 );
   const threeTabs = newLineAndTabsBuilder( 3 );
@@ -45,12 +61,6 @@ module.exports = ( function () {
 
       return acc.concat( `${addTabs}<${tag}>${curr}</${tag}>` );
     }, '' );
-  }
-
-  
-
-  function dividerBuilder() {
-    return '<div class="divider"></div>';
   }
 
   function asideItemBuilder( array, headerTittle, id = '' ) {

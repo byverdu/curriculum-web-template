@@ -1,7 +1,8 @@
 const utils = require('../src/utils');
 const {
   newLineAndTabsBuilder,
-  htmlCommentBuilder
+  htmlCommentBuilder,
+  dividerBuilder
 } = utils;
 
 describe('Utils', () => {
@@ -30,8 +31,14 @@ describe('Utils', () => {
       expect(commentMock).toHaveBeenCalledWith('is a comment', 2);
     });
   });
-  describe('newLineAndTabsBuilder', () => {
-  
+  describe('dividerBuilder', () => {
+    it('should have a dividerBuilder method', () => {
+      expect(dividerBuilder).toBeDefined();
+    });
+    it('should be possible to add a value to class attribute', () => {
+      expect(dividerBuilder()).toEqual('<div class="divider"></div>');
+      expect(dividerBuilder('custom-class')).toEqual('<div class="custom-class"></div>');
+    });
   });
   describe('newLineAndTabsBuilder', () => {
   
