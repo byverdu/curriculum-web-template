@@ -77,6 +77,3 @@ module.exports = {
 
   footer: 'Byverdu'
 };
-
-// Samples of my code can be found at my Github account http://github.com/byverdu
-// Some of my latest personal projects are pretty-form-error, pretty-letters or conscolors and can be found at the npm registry https://www.npmjs.com/~byverdu

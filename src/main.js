@@ -1,5 +1,5 @@
 const content = require( './content' );
-const util = require( './util' );
+const util = require( './utils' );
 
 const {
   headContent,

@@ -26,6 +26,22 @@ function headContentTemplate({
     <body>`;
 }
 
+/**
+ * footerContentTemplate
+ * @description Footer tag builder
+ *
+ * @param {Object} {
+ *   author = author name
+ * }
+ * @returns String
+ */
+function footerContentTemplate ({author}) {
+  return `<footer class="resume__footer">
+      <p class="resume__footer-copy">Made with <span>&lt;3</span> by ${author}, <b class="js-footer-year">2018</b></p>
+    </footer>`;
+}
+
 export const templates = {
-  headContentTemplate
+  headContentTemplate,
+  footerContentTemplate
 };

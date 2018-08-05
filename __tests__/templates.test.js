@@ -1,14 +1,16 @@
 import {templates} from '../src/templates';
 import {
-  headContentConfig
+  headContentConfig,
+  footerContentConfig
 } from '../src/config';
 
+const {
+  headContentTemplate,
+  footerContentTemplate
+} = templates;
 
 describe('Templates', () => {
   describe('Head Content template', () => {
-    const {
-      headContentTemplate
-    } = templates;
     const mockHead = jest.fn();
     const result = headContentTemplate(headContentConfig);
 
@@ -29,5 +31,24 @@ describe('Templates', () => {
           expect(result).toContain(value);
         });
       });
-  })
+  });
+  describe('Footer Content template', () => {
+    const mockFooter = jest.fn();
+    const result = footerContentTemplate(footerContentConfig);
+
+    it( 'should be defined', () => {
+      expect(footerContentTemplate).toBeDefined();
+    });
+    it( 'should be function', () => {
+      expect(typeof footerContentTemplate).toBe('function');
+    });
+    it( 'should use footerContentConfig data', () => {
+      mockFooter(footerContentConfig);
+
+      expect(mockFooter).toHaveBeenCalledWith(footerContentConfig);
+    });
+    it('should contain values from footer content', () => {
+      expect(result).toContain('@DoeJohn');
+    });
+  });
 });
