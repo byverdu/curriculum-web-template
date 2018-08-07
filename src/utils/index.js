@@ -1,6 +1,29 @@
 /* eslint-disable func-names */
 module.exports = ( function () {
   /**
+   * Blueprint class for validation errors
+   * @class ValidationError
+   */
+  class ValidationError {
+    constructor() {
+      this.name = this.constructor.name;
+      this.message = `${this.name}::`;
+    }
+  }
+
+  /**
+   * Error class for wrong number of arguments
+   * @class WrongNumberArgsError
+   * @extends {ValidationError}
+   */
+  class WrongNumberArgsError extends ValidationError {
+    constructor(fncName, numberArgs) {
+      super()
+      this.message += ` ${fncName} expects at least ${numberArgs} arguments`;
+    }
+  }
+
+  /**
    * newLineAndTabsBuilder
    * @description Creates a string with a new line and as tabs
    * as it's been specified in the parameter
@@ -51,15 +74,24 @@ module.exports = ( function () {
     return `<div class="${className}"></div>`;
   }
 
+  /**
+   * htmlTagBuilder
+   * @description 
+   * @param {*} content
+   * @param {*} tag
+   * @param {number} [numberTabs=2]
+   * @returns String
+   */
+  function htmlTagBuilder( content, tag, numberTabs = 2 ) {
   
+    if (arguments.length < 2) {
+      throw new WrongNumberArgsError('htmlTagBuilder', 2);
+    }
 
-  const oneTab = newLineAndTabsBuilder( 1 );
-  const twoTabs = newLineAndTabsBuilder( 2 );
-  const threeTabs = newLineAndTabsBuilder( 3 );
+    const tabs = newLineAndTabsBuilder( numberTabs );
 
-  function htmlTagBuilder( content, tag ) {
     return content.reduce(( acc, curr, index ) => {
-      const addTabs = index !== 0 ? `${twoTabs}` : '';
+      const addTabs = index !== 0 ? `${tabs}` : '';
 
       return acc.concat( `${addTabs}<${tag}>${curr}</${tag}>` );
     }, '' );
