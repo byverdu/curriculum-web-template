@@ -1,13 +1,9 @@
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const webpack = require('webpack');
-
-const devServer = {
-  contentBase: './dist',
-  compress: true,
-  port: 8080,
-  hot: true
-}
+const plugins = require('./webpack/plugins');
+const rules = require('./webpack/rules');
+const dev = require('./webpack/dev');
+const prod = require('./webpack/prod');
+const env = process.env.NODE_ENV === 'development' ? dev : prod;
 
 module.exports = {
   entry: './src/index.js',
@@ -15,42 +11,13 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
-  devtool: 'inline-source-map',
-  mode: 'development',
-  devServer: {
-    ...devServer
-  },
+  ...env,
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    ...plugins
   ],
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.scss|.css$/,
-        use: [
-          'css-hot-loader',
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
-        ]
-      },
-      {
-        test: /\.svg/,
-        use: {
-            loader: 'svg-url-loader'
-        }
-    }
+      ...rules
     ]
   }
 };
