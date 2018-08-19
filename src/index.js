@@ -1,6 +1,6 @@
 const content = require( './content' );
 const util = require( './utils' );
-
+import './sass/main.scss';
 const {
   headContent,
   contactDetails,
@@ -33,6 +33,7 @@ const skillsComment = htmlCommentBuilder( 'Skills Section' );
 
 const body = `
   <aside class="resume__aside">
+
     ${asideContacts}
     ${asideNetwork}
   </aside>

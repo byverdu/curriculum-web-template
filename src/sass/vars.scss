@@ -11,9 +11,11 @@ $purple:   #bd93f9;
 $red:   #ff5555;
 $yellow:   #f1fa8c;
 $gutter: 15px;
+$img-path: '../images/';
 $devMe: me, email, telephone, address;
 $devIcons: github, npm, web, linkedin;
-$divider: 'divider.svg';
+$divider: '#{$img-path}divider.svg';
+
 
 $breakpoints: (
   'small':  767px,
@@ -41,7 +43,7 @@ $breakpoints: (
 
 @mixin before-pseudo-element($icon, $size) {
   &::before {
-    content: url(#{$icon}.svg);
+    content: url(#{$img-path}#{$icon}.svg);
     width: #{$size}px;
     height: #{$size}px;
     margin-right: 10px;

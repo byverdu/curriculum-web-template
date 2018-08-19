@@ -270,7 +270,7 @@ pre[class*=language-] {
 
     width: 100%;
     height: 100px;
-    background-image: url(footer.svg);
+    background-image: url(#{$img-path}footer.svg);
     background-size: contain;
     margin-top: ($gutter * 3);
     position: absolute;
