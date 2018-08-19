@@ -83,7 +83,7 @@ module.exports = ( function () {
    * @returns String
    */
   function htmlTagBuilder( content, tag, numberTabs = 2 ) {
-  
+
     if (arguments.length < 2) {
       throw new WrongNumberArgsError('htmlTagBuilder', 2);
     }
@@ -97,6 +97,22 @@ module.exports = ( function () {
     }, '' );
   }
 
+
+
+  const oneTab = newLineAndTabsBuilder( 1 );
+  const twoTabs = newLineAndTabsBuilder( 2 );
+  const threeTabs = newLineAndTabsBuilder( 3 );
+
+
+
+
+
+
+
+
+
+
+  
   function asideItemBuilder( array, headerTittle, id = '' ) {
     const listItems = htmlTagBuilder( array, 'li' );
 
