@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = [
   {
@@ -12,7 +13,7 @@ module.exports = [
     test: /\.scss|.css$/,
     use: [
       'css-hot-loader',
-      MiniCssExtractPlugin.loader,
+      devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
       'css-loader',
       'sass-loader'
     ]
