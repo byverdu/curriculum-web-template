@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const GoogleFontsPlugin = require('google-fonts-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 const pathsToClean = [
@@ -34,11 +34,9 @@ module.exports = [
     filename: devMode ? '[name].css' : '[name].[hash].css',
     chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
   }),
-  new GoogleFontsPlugin({
-    fonts: [
-      { family: "BioRhyme Expanded" },
-      { family: "Roboto" }
-    ]
+  new HtmlWebpackPlugin({ 
+    template: 'src/toCopy/index.html',
+    prism_theme: process.env.npm_config_prism_theme,
   }),
   new CopyWebpackPlugin([
     'src/toCopy'
