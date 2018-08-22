@@ -1,7 +1,7 @@
 const devServer = {
   contentBase: './dist',
   compress: true,
-  port: 8087,
+  port: 8080,
   hot: true
 }
 

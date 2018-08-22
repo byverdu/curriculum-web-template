@@ -37,6 +37,7 @@ module.exports = [
   new HtmlWebpackPlugin({ 
     template: 'src/toCopy/index.html',
     prism_theme: process.env.npm_config_prism_theme,
+    inject: false
   }),
   new CopyWebpackPlugin([
     'src/toCopy'
