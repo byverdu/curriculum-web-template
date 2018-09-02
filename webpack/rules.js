@@ -11,12 +11,19 @@ module.exports = [
   },
   {
     test: /\.scss|.css$/,
-    use: [
-      'css-hot-loader',
-      devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-      'css-loader',
-      'sass-loader'
-    ]
+    use: [{
+        loader: 'css-hot-loader',
+      }, {
+        loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+      }, {
+        loader: 'css-loader',
+      }, {
+        loader: "sass-loader",
+        options: {
+          data: "$theme: 'dracula';"
+        }
+      }
+    ],
   },
   {
     test: /\.svg/,

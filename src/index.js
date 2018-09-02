@@ -33,7 +33,6 @@ const skillsComment = htmlCommentBuilder( 'Skills Section' );
 
 const body = `
   <aside class="resume__aside">
-
     ${asideContacts}
     ${asideNetwork}
   </aside>

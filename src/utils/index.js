@@ -24,6 +24,17 @@ module.exports = ( function () {
   }
 
   /**
+   * trimAndLowercaseString
+   * @description Trim an lowercase a string
+   *
+   * @param {String} theme
+   * @returns String
+   */
+  function trimAndLowercaseString(theme) {
+    return theme.toLowerCase().trim();
+  }
+  
+  /**
    * newLineAndTabsBuilder
    * @description Creates a string with a new line and as tabs
    * as it's been specified in the parameter
@@ -202,6 +213,7 @@ module.exports = ( function () {
     dividerBuilder,
     educationBuilder,
     skillsBuilder,
-    footerBuilder
+    footerBuilder,
+    trimAndLowercaseString
   };
 }());

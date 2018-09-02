@@ -4,6 +4,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DownloadPrismThemePlugin = require('./DownloadPrismThemePlugin')
+const prismThemeConfig = require('../src/config').prismThemeConfig;
 
 const devMode = process.env.NODE_ENV !== 'production';
 const pathsToClean = [
@@ -30,10 +32,6 @@ const plugins = process.env.NODE_ENV === 'development' ?
 
 module.exports = [
   new CleanWebpackPlugin(pathsToClean, cleanOptions),
-  new MiniCssExtractPlugin({
-    filename: devMode ? '[name].css' : '[name].[hash].css',
-    chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-  }),
   new HtmlWebpackPlugin({ 
     template: 'src/toCopy/index.html',
     prism_theme: process.env.npm_config_prism_theme,
@@ -42,5 +40,10 @@ module.exports = [
   new CopyWebpackPlugin([
     'src/toCopy'
   ]),
+  new MiniCssExtractPlugin({
+    filename: devMode ? '[name].css' : '[name].[hash].css',
+    chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+  }),
+  new DownloadPrismThemePlugin(prismThemeConfig),
   ...plugins
 ];
