@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const prismTheme = require('../src/config').prismTheme;
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = [
@@ -20,15 +21,19 @@ module.exports = [
       }, {
         loader: "sass-loader",
         options: {
-          data: "$theme: 'dracula';"
+          data: `$prismTheme: ${prismTheme};`
         }
       }
     ],
   },
   {
-    test: /\.svg/,
-    use: {
-      loader: 'svg-url-loader'
-    }
+    test: /\.svg(\?.*)?$/,
+    use: [
+      {
+        loader: 'svg-url-loader'
+      },{
+        loader: 'svg-transform-loader'
+      }
+    ]
   }
 ]

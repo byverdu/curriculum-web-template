@@ -1,7 +1,6 @@
 /*
 Data entry point for all the content that will be used
 */
-const utils = require('../utils');
 
 // prism theme, defaults to dracula a custom theme
 // possible values are prism, coy, dark, funky, okaidia, solorizedlight, tomorrow, twilight

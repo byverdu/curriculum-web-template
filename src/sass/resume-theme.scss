@@ -1,4 +1,4 @@
-// @import 'vars';
+$icon-color: get-theme-values($prismTheme, 'bg-btn');
 
 * {
   padding: 0;
@@ -18,12 +18,12 @@
 body {
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
-  background: $black;
+  background: get-theme-values($prismTheme, 'bg');
 }
 
 .theme {
-  background: $black;
-  color: $white;
+  background: get-theme-values($prismTheme, 'bg');
+  color: get-theme-values($prismTheme, 'text-color');
 }
 
 .divider {
@@ -75,13 +75,13 @@ pre[class*=language-] {
       }
 
       & .group-0 {
-        color: $green;
+        color: get-theme-values($prismTheme, 'title-color');
       }
       & .group-1 {
-        color: $green;
+        color: get-theme-values($prismTheme, 'title-color');
       }
       & .group-2 {
-        color: $orange;
+        color: get-theme-values($prismTheme, 'title-color-2');
         margin-bottom: $gutter;
         
         @include breakpoint('small') {
@@ -101,7 +101,7 @@ pre[class*=language-] {
       width: 100%;
       display: block;
       margin: 0 auto;
-      background: darken($red, 5%);
+      background: darken(get-theme-values($prismTheme, 'bg-btn'), 5%);
       color: $white;
       border: inset 1px rgba($white, .7);
       border-radius: 4px;
@@ -111,13 +111,13 @@ pre[class*=language-] {
 
       &:hover {
         cursor: pointer;
-        background: darken($red, 10%);
+        background: darken(get-theme-values($prismTheme, 'bg-btn'), 10%);
       }
       &:focus {
         outline: $red;
       }
       &:active {
-        background: darken($red, 25%);
+        background: darken(get-theme-values($prismTheme, 'bg-btn'), 25%);
         border: 0;
       }
     }
@@ -160,11 +160,11 @@ pre[class*=language-] {
       list-style: none;
       
       &.dev-icons {
-        @include list-icon-generator($devIcons, 25);
+        @include list-icon-generator($devIcons, 25, $icon-color);
       }
       
       &.me-icons {
-        @include list-icon-generator($devMe, 25);        
+        @include list-icon-generator($devMe, 25, $icon-color);
       }
     }
   }
@@ -177,7 +177,7 @@ pre[class*=language-] {
     }
     
     &-list {
-      @include list-icon-generator(robot, 30);
+      @include list-icon-generator(robot, 30, $icon-color);
     }
   }
   
@@ -211,13 +211,13 @@ pre[class*=language-] {
       
       &:nth-of-type(2) {
         .resume__main-list {
-          @include list-icon-generator(lamp, 30);        
+          @include list-icon-generator(lamp, 30, $icon-color);
         }
       }
       
       &:nth-of-type(3) {
         .resume__main-list {
-          @include list-icon-generator(atom, 25);        
+          @include list-icon-generator(atom, 25, $icon-color);
         }
       }
       
@@ -233,7 +233,7 @@ pre[class*=language-] {
     &-item {
       margin-bottom: ($gutter);
       .resume__main-list {
-        @include list-icon-generator(code, 25);
+        @include list-icon-generator(code, 25, $icon-color);
         
         span {
           display: flex;
@@ -283,7 +283,9 @@ pre[class*=language-] {
       width: 95%;
       margin: 0 auto;
       padding: 7px 5px 3px;
-      background: $black;
+      background: get-theme-values($prismTheme, 'bg');
+      color: get-theme-values($prismTheme, 'text-color');
+      border: 1px inset;
       position: absolute;
       left: 0;
       right: 0;
