@@ -3,33 +3,26 @@ Data entry point for all the content that will be used
 */
 const utils = require('../utils');
 
-// ./webpack/DownloadPrismThemePlugin.js configuration
-const prismThemeConfig = {
-  theme: 'dracula',
-  urlsConfig: (theme) => {
-    const themeSanitised = utils.trimAndLowercaseString(theme);
-    const themeType = themeSanitised === 'prism' ? themeSanitised : `prism-${themeSanitised}`;
-    return [`https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/${themeType}.css`]
-  },
-  directory: './src/sass',
-  defaultFilename: 'prism-theme.scss',
-  subdirectories: null,
+// prism theme, defaults to dracula a custom theme
+// possible values are prism, coy, dark, funky, okaidia, solorizedlight, tomorrow, twilight
+const prismThemes = [
+  'dracula', 'prism', 'coy', 'dark', 'funky', 'okaidia', 'solorizedlight', 'tomorrow', 'twilight'
+];
+export const prismTheme = 'prism';
+export const isValidPrismTheme = () => {
+  if (!prismThemes.includes(prismTheme)) {
+    throw Error(`\x1b[31m ${prismTheme} is not a valid prism theme, choose one from the "prismThemes" array in "${__dirname}" \x1b[0m`);
+  } 
 }
 
 // Content for <meta> tags in <head>
-const headContentConfig = {
+export const headContentConfig = {
   description: 'John Doe Resume',
   keywords: 'HTML5, SCSS, JavaScript, Node, Jest, ES6, Gulp',
   author: '@DoeJohn'
 };
 
 // Content for <footer> tag
-const footerContentConfig = {
+export const footerContentConfig = {
   author: '@DoeJohn'
-}
-
-module.exports = {
-  prismThemeConfig,
-  headContentConfig,
-  footerContentConfig
 }

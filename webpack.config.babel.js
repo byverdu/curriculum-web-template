@@ -1,3 +1,6 @@
+// Check if we are using a valid prism theme
+require('./src/config').isValidPrismTheme();
+
 const path = require('path');
 const plugins = require('./webpack/plugins');
 const rules = require('./webpack/rules');

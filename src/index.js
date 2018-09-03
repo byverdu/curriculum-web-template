@@ -1,6 +1,15 @@
+import {prismTheme} from '../src/config';
 const content = require( './content' );
 const util = require( './utils' );
 import './sass/main.scss';
+
+if (prismTheme === 'dracula') {
+  require('../src/sass/prism-dracula.scss');
+} else {
+  const tempTheme = prismTheme === 'prism' ? prismTheme : `prism-${prismTheme}`;
+  require(`prismjs/themes/${tempTheme}.css`);
+}
+
 const {
   headContent,
   contactDetails,

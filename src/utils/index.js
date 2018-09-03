@@ -22,17 +22,6 @@ module.exports = ( function () {
       this.message += ` ${fncName} expects at least ${numberArgs} arguments`;
     }
   }
-
-  /**
-   * trimAndLowercaseString
-   * @description Trim an lowercase a string
-   *
-   * @param {String} theme
-   * @returns String
-   */
-  function trimAndLowercaseString(theme) {
-    return theme.toLowerCase().trim();
-  }
   
   /**
    * newLineAndTabsBuilder
@@ -213,7 +202,6 @@ module.exports = ( function () {
     dividerBuilder,
     educationBuilder,
     skillsBuilder,
-    footerBuilder,
-    trimAndLowercaseString
+    footerBuilder
   };
 }());

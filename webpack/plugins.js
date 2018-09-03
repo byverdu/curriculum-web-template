@@ -4,8 +4,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const DownloadPrismThemePlugin = require('./DownloadPrismThemePlugin')
-const prismThemeConfig = require('../src/config').prismThemeConfig;
 
 const devMode = process.env.NODE_ENV !== 'production';
 const pathsToClean = [
@@ -44,6 +42,5 @@ module.exports = [
     filename: devMode ? '[name].css' : '[name].[hash].css',
     chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
   }),
-  new DownloadPrismThemePlugin(prismThemeConfig),
   ...plugins
 ];

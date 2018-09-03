@@ -3,8 +3,7 @@ const {
   newLineAndTabsBuilder,
   htmlCommentBuilder,
   dividerBuilder,
-  htmlTagBuilder,
-  trimAndLowercaseString
+  htmlTagBuilder
 } = utils;
 
 describe('Utils', () => {
@@ -60,14 +59,6 @@ describe('Utils', () => {
     });
     it('should throw an error if less than 2 arguments are passed', () => {
       expect(() => htmlTagBuilder(tagContent)).toThrowError('WrongNumberArgsError:: htmlTagBuilder expects at least 2 arguments');
-    });
-  });
-  describe('trimAndLowercaseString', () => {
-    it('should have a trimAndLowercaseString method', () => {
-      expect(trimAndLowercaseString).toBeDefined();
-    });
-    it('should lowercase and trim a string', () => {
-      expect(trimAndLowercaseString(' DraCula  ')).toEqual('dracula');
     });
   });
   
