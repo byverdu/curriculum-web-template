@@ -175,10 +175,6 @@ pre[class*=language-] {
     &-title {
       margin-bottom: $gutter;
     }
-    
-    &-list {
-      @include list-icon-generator(robot, 30, $icon-color);
-    }
   }
   
   &__summary {
@@ -208,18 +204,8 @@ pre[class*=language-] {
           margin-bottom: ($gutter - 10);
         }
       }
-      
-      &:nth-of-type(2) {
-        .resume__main-list {
-          @include list-icon-generator(lamp, 30, $icon-color);
-        }
-      }
-      
-      &:nth-of-type(3) {
-        .resume__main-list {
-          @include list-icon-generator(atom, 25, $icon-color);
-        }
-      }
+
+      @include experience-builder($experienceIcons, $icon-color);
       
       &:last-of-type {
         margin-bottom: $gutter;
@@ -260,7 +246,7 @@ pre[class*=language-] {
 
     td {
       padding: 10px 15px;
-      box-shadow: 0 0 3px $red;
+      box-shadow: 0 0 3px get-theme-values($prismTheme, 'td-shadow');
       flex-grow: 1;
       margin: 5px;
     }

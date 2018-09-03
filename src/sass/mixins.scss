@@ -1,0 +1,79 @@
+// Mixins
+@mixin breakpoint($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+ 
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+@mixin fill-content-background-image($url, $color, $icon) {
+  $base-color: str-slice(inspect($color), 2);
+  $parsed: '';
+
+  @if $icon == 'npm' {
+    $parsed: unquote('url("' + $url + "?fill=%23" + $base-color + " .box" + '")');
+  } @else {
+    $parsed: unquote('url("' + $url + "?fill=%23" + $base-color + '")');
+  }
+
+  content: $parsed;
+}
+
+@mixin before-pseudo-element($icon, $size, $color) {
+  &::before {
+    @include fill-content-background-image('#{$img-path}#{$icon}.svg', $color, $icon);
+    width: #{$size}px;
+    height: #{$size}px;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+  }
+}
+
+@mixin list-icon-generator($icons, $size, $color) {
+  li {
+    display: flex;
+    align-items: center;
+    line-height: #{$size}px;
+    padding: 5px 0;
+
+    @if length($icons) > 1 {
+
+      $i: 1;
+      @each $icon in $icons {
+        &:nth-child(#{$i}) {
+          @include before-pseudo-element($icon, $size, $color);
+        }
+        $i: $i + 1;
+      }
+    } @else {
+      @include before-pseudo-element($icons, $size, $color);
+    }
+  }
+}
+
+@mixin experience-builder($icons, $icon-color) {
+  $i: 1;
+  @each $icon in $icons {
+    &:nth-of-type(#{$i}) {
+      .resume__main-list {
+        @include list-icon-generator($icon, 30, $icon-color);
+      }
+    }
+    $i: $i + 1;
+  }    
+}
+
+// Functions
+
+@function get-theme-values($theme, $prop) {
+  @return map-get(map-get($prism-themes, $theme), $prop);
+}

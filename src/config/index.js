@@ -5,9 +5,9 @@ Data entry point for all the content that will be used
 // prism theme, defaults to dracula a custom theme
 // possible values are prism, coy, dark, funky, okaidia, solorizedlight, tomorrow, twilight
 const prismThemes = [
-  'dracula', 'prism', 'coy', 'dark', 'funky', 'okaidia', 'solorizedlight', 'tomorrow', 'twilight'
+  'dracula', 'prism', 'coy', 'dark', 'funky', 'okaidia', 'solarizedlight', 'tomorrow', 'twilight'
 ];
-export const prismTheme = 'dracula';
+export const prismTheme = 'dark';
 export const isValidPrismTheme = () => {
   if (!prismThemes.includes(prismTheme)) {
     throw Error(`\x1b[31m ${prismTheme} is not a valid prism theme, choose one from the "prismThemes" array in "${__dirname}" \x1b[0m`);

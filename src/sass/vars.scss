@@ -14,6 +14,7 @@ $gutter: 15px;
 $img-path: '../images/';
 $devMe: me, email, telephone, address;
 $devIcons: github, npm, web, linkedin;
+$experienceIcons: robot, lamp, atom;
 $divider: '#{$img-path}divider.svg';
 
 $breakpoints: (
@@ -22,61 +23,6 @@ $breakpoints: (
   'large':  1200px
 ) !default;
 
-// Mixins
-@mixin breakpoint($breakpoint) {
-  // If the key exists in the map
-  @if map-has-key($breakpoints, $breakpoint) {
-    // Prints a media query based on the value
-    @media (min-width: map-get($breakpoints, $breakpoint)) {
-      @content;
-    }
-  }
- 
-  // If the key doesn't exist in the map
-  @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Available breakpoints are: #{map-keys($breakpoints)}.";
-  }
-}
-
-@mixin fill-background-image($url, $color) {
-  $base-color: str-slice(inspect($color), 2);
-  background-image: unquote('url("' + $url + "?fill=%23" + $base-color + '")');
-}
-
-@mixin before-pseudo-element($icon, $size, $color) {
-  &::before {
-    content: '';
-    @include fill-background-image('#{$img-path}#{$icon}.svg', $color);
-    width: #{$size}px;
-    height: #{$size}px;
-    margin-right: 10px;
-  }
-}
-
-@mixin list-icon-generator($icons, $size, $color) {
-  .a {fill: white}
-  li {
-    display: flex;
-    align-items: center;
-    line-height: #{$size}px;
-    padding: 5px 0;
-
-    @if length($icons) > 1 {
-
-      $i: 1;
-      @each $icon in $icons {
-        &:nth-child(#{$i}) {
-          @include before-pseudo-element($icon, $size, $color);
-        }
-        $i: $i + 1;
-      }
-    } @else {
-      @include before-pseudo-element($icons, $size, $color);
-    }
-  }
-}
-
 $prism-themes: (
   dracula: (
     'bg': $black,
@@ -84,6 +30,7 @@ $prism-themes: (
     'bg-btn': $red,
     'title-color': $green,
     'title-color-2': $orange,
+    'td-shadow': $red,
   ),
   prism: (
     'bg': #f5f2f0,
@@ -91,6 +38,7 @@ $prism-themes: (
     'bg-btn': #905,
     'title-color': #690,
     'title-color-2': #07a,
+    'td-shadow': #690,
   ),
   coy: (
     'bg': #fdfdfd,
@@ -98,9 +46,54 @@ $prism-themes: (
     'bg-btn': #c92c2c,
     'title-color': #2f9c0a,
     'title-color-2': #1990b8,
-  )
+    'td-shadow': #1990b8
+  ),
+  dark: (
+    'bg': #4d4033,
+    'text-color': #fff,
+    'bg-btn': #d1949e,
+    'title-color': #bde052,
+    'title-color-2': #f5b83d,
+    'td-shadow': #d1949e
+  ),
+  funky: (
+    'bg': #000,
+    'text-color': #fff,
+    'bg-btn': #ff1493,
+    'title-color': #9acd32 ,
+    'title-color-2': #0cf,
+    'td-shadow': #ff1493
+  ),
+  okaidia: (
+    'bg': #272822,
+    'text-color': #f8f8f2,
+    'bg-btn': #f92672,
+    'title-color': #a6e22e ,
+    'title-color-2': #e6db74,
+    'td-shadow': #f92672
+  ),
+  solarizedlight: (
+    'bg': #fdf6e3,
+    'text-color': #657b83,
+    'bg-btn': #268bd2,
+    'title-color': #2aa198 ,
+    'title-color-2': #859900,
+    'td-shadow': #657b83
+  ),
+  tomorrow: (
+    'bg': #2d2d2d,
+    'text-color': #ccc,
+    'bg-btn': #e2777a,
+    'title-color': #7ec699 ,
+    'title-color-2': #67cdcc,
+    'td-shadow': #7ec699
+  ),
+  twilight: (
+    'bg': #141414,
+    'text-color': #fff,
+    'bg-btn': #ad895c,
+    'title-color': #E9C062 ,
+    'title-color-2': #919e6b,
+    'td-shadow': #AC885B
+  ),
 ) !default;
-
-@function get-theme-values($theme, $prop) {
-  @return map-get(map-get($prism-themes, $theme), $prop);
-}
