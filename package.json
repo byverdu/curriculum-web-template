@@ -7,7 +7,7 @@
   "scripts": {
     "start": "gulp start",
     "build": "NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "NODE_ENV=development nodemon --exec 'webpack-dev-server'",
+    "dev": "NODE_ENV=development nodemon --exec 'webpack-dev-server' --ignore ./dist",
     "test": "jest --watch"
   },
   "jest": {
