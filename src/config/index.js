@@ -7,7 +7,7 @@ Data entry point for all the content that will be used
 const prismThemes = [
   'dracula', 'prism', 'coy', 'dark', 'funky', 'okaidia', 'solorizedlight', 'tomorrow', 'twilight'
 ];
-export const prismTheme = 'prism';
+export const prismTheme = 'dracula';
 export const isValidPrismTheme = () => {
   if (!prismThemes.includes(prismTheme)) {
     throw Error(`\x1b[31m ${prismTheme} is not a valid prism theme, choose one from the "prismThemes" array in "${__dirname}" \x1b[0m`);

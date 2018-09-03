@@ -39,10 +39,15 @@ $breakpoints: (
   }
 }
 
+@mixin fill-background-image($url, $color) {
+  $base-color: str-slice(inspect($color), 2);
+  background-image: unquote('url("' + $url + "?fill=%23" + $base-color + '")');
+}
+
 @mixin before-pseudo-element($icon, $size, $color) {
   &::before {
     content: '';
-    background-image: url(#{$img-path}#{$icon}.svg?fill=%23fff);
+    @include fill-background-image('#{$img-path}#{$icon}.svg', $color);
     width: #{$size}px;
     height: #{$size}px;
     margin-right: 10px;
@@ -50,6 +55,7 @@ $breakpoints: (
 }
 
 @mixin list-icon-generator($icons, $size, $color) {
+  .a {fill: white}
   li {
     display: flex;
     align-items: center;
