@@ -15,7 +15,7 @@ module.exports = [
     use: [{
         loader: 'css-hot-loader',
       }, {
-        loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+        loader: 'style-loader',
       }, {
         loader: 'css-loader',
       }, {

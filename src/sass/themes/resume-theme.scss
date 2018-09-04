@@ -39,16 +39,18 @@ body {
   margin: 0 auto;
 }
 
-code[class*=language-],
-pre[class*=language-] {
-  white-space: pre-wrap;
-  word-break: break-word;
-  max-width: 1500px;
-  margin: 0 auto;
-}
-
 .tags-content {
   padding: ($gutter * 2) $gutter 0;
+  min-width: 1200px;
+  margin: 0 auto;
+
+  code[class*=language-],
+  pre[class*=language-] {
+    white-space: pre-wrap;
+    word-break: break-word;
+    min-width: 1200px;
+    margin: 0 auto;
+  }
 }
 
 .resume {

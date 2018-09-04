@@ -27,7 +27,7 @@ const devPlugins = [
   }),
   new GoogleFontsPlugin({
     path: '../src/sass/fonts/',
-    filename: '../src/sass/fonts.css',
+    filename: '../src/sass/fonts.scss',
     fonts: [
         { family: "BioRhyme Expanded" },
         { family: "Roboto" }
@@ -46,8 +46,8 @@ const plugins = process.env.NODE_ENV === 'development' ?
 module.exports = [
   new CleanWebpackPlugin(pathsToClean, cleanOptions),
   new MiniCssExtractPlugin({
-    filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+    filename: '[name].css' ,
+    chunkFilename: '[id].css',
   }),
   new CopyWebpackPlugin([
     'src/toCopy'
@@ -58,7 +58,8 @@ module.exports = [
     author: headTag.author,
     keywords: headTag.keywords,
     inlineSource: '.(css|js)$',
-    inject: 'head'
+    inject: 'head',
+    minify: true
   }),
   ...plugins
 ];

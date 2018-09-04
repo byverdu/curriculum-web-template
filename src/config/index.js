@@ -7,7 +7,7 @@ Data entry point for all the content that will be used
 const prismThemes = [
   'dracula', 'prism', 'coy', 'dark', 'funky', 'okaidia', 'solarizedlight', 'tomorrow', 'twilight'
 ];
-export const prismTheme = 'funky';
+export const prismTheme = 'dark';
 export const isValidPrismTheme = () => {
   if (!prismThemes.includes(prismTheme)) {
     throw Error(`\x1b[31m ${prismTheme} is not a valid prism theme, choose one from the "prismThemes" array in "${__dirname}" \x1b[0m`);
@@ -24,4 +24,14 @@ export const headContentConfig = {
 // Content for <footer> tag
 export const footerContentConfig = {
   author: '@DoeJohn'
+}
+
+
+export function prismThemeLoader(themeToLoad) {
+  if (themeToLoad === 'dracula') {
+    return require('../sass/themes/prism-dracula.css');
+  } else {
+    const tempTheme = themeToLoad === 'prism' ? themeToLoad : `prism-${themeToLoad}`;
+    return require(`prismjs/themes/${tempTheme}.css`);
+  }
 }
