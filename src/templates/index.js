@@ -22,7 +22,12 @@ import {
 
 const headContent = headContentTemplate(headContentConfig);
 const footerContent = footerContentTemplate(footerContentConfig);
+let asideContent = '';
 
+contactDetailsContentConfig.forEach(item => {
+  const {details, headerTitle, className} = item;
+  asideContent += asideItemBuilder(details, headerTitle, className);
+})
 
 // legacy
 const content = require( '../content' );
@@ -48,10 +53,7 @@ const skillsComment = htmlCommentBuilder( 'Skills Section' );
 
 const body = `
   <aside class="resume__aside">
-    ${contactDetailsContentConfig.forEach(item => {
-      const {details, headerTitle, className} = item;
-      asideItemBuilder(details, headerTitle, className);
-    })}
+    ${asideContent}
   </aside>
   <main class="resume__main">
     ${summaryComment}
