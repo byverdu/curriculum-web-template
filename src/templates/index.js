@@ -1,47 +1,88 @@
-/**
- * headContentTemplate
- * @description Head tag builder that contains most used meta tags
- *
- * @param {Object} {
- *   description = meta tag for description,
- *   keywords = meta tag for keywords,
- *   author = meta tag for author
- * }
- * @returns String
- */
-function headContentTemplate({
-  description, keywords, author
-}) {
-  return `<!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charsret="UTF-8">
-      <meta name="description" content="${description}">
-      <meta name="keywords" content="${keywords}">
-      <meta name="author" content="${author}">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>${description}</title>
-    </head>
-    <body>`;
-}
+import {
+  headContentConfig,
+  contactDetailsContentConfig,
+  footerContentConfig,
+} from '../../src/config';
 
-/**
- * footerContentTemplate
- * @description Footer tag builder
- *
- * @param {Object} {
- *   author = author name
- * }
- * @returns String
- */
-function footerContentTemplate ({author}) {
-  return `<footer class="resume__footer">
-      <p class="resume__footer-copy">Made with <span>&lt;3</span> by ${author}, <b class="js-footer-year">2018</b></p>
-    </footer>`;
-}
-
-export const templates = {
+import {
   headContentTemplate,
+  asideItemContentTemplate,
   footerContentTemplate
+} from './templates';
+
+import {
+  asideItemBuilder,
+  htmlTagBuilder,
+  experienceBuilder,
+  htmlCommentBuilder,
+  educationBuilder,
+  skillsBuilder,
+  dividerBuilder
+} from '../utils';
+
+const headContent = headContentTemplate(headContentConfig);
+const footerContent = footerContentTemplate(footerContentConfig);
+
+
+// legacy
+const content = require( '../content' );
+const {
+  contactDetails,
+  networkDetails,
+  summaryContent,
+  experiences,
+  education,
+  skills
+} = content;
+
+// end legacy
+
+const asideContacts = asideItemBuilder( contactDetails, 'Contact Details', 'me-icons' );
+const asideNetwork = asideItemBuilder( networkDetails, 'Dev Network Details', 'dev-icons' );
+const summary = htmlTagBuilder( summaryContent, 'p' );
+const experienceContent = experienceBuilder( experiences );
+const summaryComment = htmlCommentBuilder( 'Personal Summary Section' );
+const experienceComment = htmlCommentBuilder( 'Experience Section' );
+const educationComment = htmlCommentBuilder( 'Education Section' );
+const skillsComment = htmlCommentBuilder( 'Skills Section' );
+
+const body = `
+  <aside class="resume__aside">
+    ${contactDetailsContentConfig.forEach(item => {
+      const {details, headerTitle, className} = item;
+      asideItemBuilder(details, headerTitle, className);
+    })}
+  </aside>
+  <main class="resume__main">
+    ${summaryComment}
+    <section class="resume__summary">
+      <h2 class="resume__main-title">Summary</h2>
+      ${summary}
+    </section>
+  
+    ${dividerBuilder()}
+    ${experienceComment}
+    <section class="resume__experience">
+      <h2 class="resume__main-title">Experience</h2>
+      ${experienceContent}
+    </section>
+
+    ${dividerBuilder()}
+    ${educationComment}
+    <section class="resume__education">
+      <h2 class="resume__main-title">Education</h2>
+      ${educationBuilder( education )}
+    </section>
+
+    ${dividerBuilder()}
+    ${skillsComment}
+    ${skillsBuilder( skills )}
+  </main>
+  ${footerContent}`;
+
+const headAndBody = headContent.concat( body );
+
+export {
+  body,
+  headAndBody
 };

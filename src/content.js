@@ -1,27 +1,4 @@
-const headContent = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charsret="UTF-8">
-  <meta name="description" content="Albert Vallverdu Resume">
-  <meta name="keywords" content="HTML5, SCSS, JavaScript, Node, Jest, ES6, Gulp">
-  <meta name="author" content="@byverdu">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css">
-  <title>Albert Vallverdu CV</title>
-</head>
-<body>`;
-
 module.exports = {
-  prismThemesUrl: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/',
-  prismThemes: [
-    'prism.min.css',
-    'prism-coy.min.css',
-    'prism-solarizedlight.min.css',
-    'prism-okaidia.min.css',
-    'prism-twilight.min.css'
-  ],
-  headContent,
   contactDetails: [
     'Name: Albert Vallverdu',
     'Email: Byverdu@gmail.com',
@@ -73,7 +50,5 @@ module.exports = {
       name: '3rd grade of B.U.P. 1994-1998, Barcelona (Spain). Equivalent to A Levels in the UK'
     }
   ],
-  skills: 'ES6.React, Angular and Aurelia.HTML5.NodeJS and modules.Npm ecosystem.Redux.TypeScript.CSS preprocessors.Responsive web design.BEM Methodology.Twitter Bootstrap.Cross Browser Testing.Test Driven Development.Agile Methodologies.Git.Command Line Interface.Unit Testing.jQuery.Unix Systems.Continous integration.Web APIs.Ability to translate wireframes from designs into functional webpages',
-
-  footer: 'Byverdu'
+  skills: 'ES6.React, Angular and Aurelia.HTML5.NodeJS and modules.Npm ecosystem.Redux.TypeScript.CSS preprocessors.Responsive web design.BEM Methodology.Twitter Bootstrap.Cross Browser Testing.Test Driven Development.Agile Methodologies.Git.Command Line Interface.Unit Testing.jQuery.Unix Systems.Continous integration.Web APIs.Ability to translate wireframes from designs into functional webpages'
 };

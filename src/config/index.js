@@ -7,7 +7,7 @@ Data entry point for all the content that will be used
 const prismThemes = [
   'dracula', 'prism', 'coy', 'dark', 'funky', 'okaidia', 'solarizedlight', 'tomorrow', 'twilight'
 ];
-export const prismTheme = 'dark';
+export const prismTheme = 'solarizedlight';
 export const isValidPrismTheme = () => {
   if (!prismThemes.includes(prismTheme)) {
     throw Error(`\x1b[31m ${prismTheme} is not a valid prism theme, choose one from the "prismThemes" array in "${__dirname}" \x1b[0m`);
@@ -20,6 +20,30 @@ export const headContentConfig = {
   keywords: 'HTML5, SCSS, JavaScript, Node, Jest, ES6, Gulp',
   author: '@DoeJohn'
 };
+
+// Content for <aside> and <nav> tag
+export const contactDetailsContentConfig = [
+  {
+    details: [
+      'Name: John Doe Resume',
+      'Email: DoeJohn@gmail.com',
+      'Telephone: 07720 666999',
+      'Address: W69 22IP'
+    ],
+    headerTittle: 'Contact Details',
+    className: 'me-icons'
+  },
+  {
+    details: [
+      'Github: https://github.com/DoeJohn',
+      'NPM: https://www.npmjs.com/~DoeJohn',
+      'Portfolio: http://portfolio.DoeJohn.es.lo',
+      'Linkedin: https://www.linkedin.com/in/DoeJohn/'
+    ],
+    headerTittle: 'Dev Network Details',
+    className: 'dev-icons'
+  }
+];
 
 // Content for <footer> tag
 export const footerContentConfig = {

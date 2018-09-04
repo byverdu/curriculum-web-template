@@ -187,12 +187,6 @@ module.exports = ( function () {
     </table>`;
   }
 
-  function footerBuilder( author ) {
-    return `<footer class="resume__footer">
-      <p class="resume__footer-copy">Made with <span>&lt;3</span> by ${author}, <b class="js-footer-year">2018</b></p>
-    </footer>`;
-  }
-
   return {
     newLineAndTabsBuilder,
     asideItemBuilder,
@@ -201,7 +195,6 @@ module.exports = ( function () {
     htmlCommentBuilder,
     dividerBuilder,
     educationBuilder,
-    skillsBuilder,
-    footerBuilder
+    skillsBuilder
   };
 }());

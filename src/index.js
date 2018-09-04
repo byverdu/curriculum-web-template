@@ -1,71 +1,16 @@
-import {prismTheme, prismThemeLoader} from '../src/config';
-const content = require( './content' );
-const util = require( './utils' );
+import {
+  prismThemeLoader,
+  prismTheme
+} from '../src/config';
+
+import {
+  body,
+  headAndBody
+} from './templates';
+
 import './sass/main.scss';
 
 prismThemeLoader(prismTheme);
-
-const {
-  headContent,
-  contactDetails,
-  networkDetails,
-  summaryContent,
-  experiences,
-  education,
-  skills,
-  footer
-} = content;
-const {
-  asideItemBuilder,
-  htmlTagBuilder,
-  experienceBuilder,
-  htmlCommentBuilder,
-  educationBuilder,
-  skillsBuilder,
-  dividerBuilder,
-  footerBuilder
-} = util;
-
-const asideContacts = asideItemBuilder( contactDetails, 'Contact Details', 'me-icons' );
-const asideNetwork = asideItemBuilder( networkDetails, 'Dev Network Details', 'dev-icons' );
-const summary = htmlTagBuilder( summaryContent, 'p' );
-const experienceContent = experienceBuilder( experiences );
-const summaryComment = htmlCommentBuilder( 'Personal Summary Section' );
-const experienceComment = htmlCommentBuilder( 'Experience Section' );
-const educationComment = htmlCommentBuilder( 'Education Section' );
-const skillsComment = htmlCommentBuilder( 'Skills Section' );
-
-const body = `
-  <aside class="resume__aside">
-    ${asideContacts}
-    ${asideNetwork}
-  </aside>
-  <main class="resume__main">
-    ${summaryComment}
-    <section class="resume__summary">
-      <h2 class="resume__main-title">Summary</h2>
-      ${summary}
-    </section>
-  
-    ${dividerBuilder()}
-    ${experienceComment}
-    <section class="resume__experience">
-      <h2 class="resume__main-title">Experience</h2>
-      ${experienceContent}
-    </section>
-
-    ${dividerBuilder()}
-    ${educationComment}
-    <section class="resume__education">
-      <h2 class="resume__main-title">Education</h2>
-      ${educationBuilder( education )}
-    </section>
-
-    ${dividerBuilder()}
-    ${skillsComment}
-    ${skillsBuilder( skills )}
-  </main>
-  ${footerBuilder( footer )}`;
 
 document.addEventListener( 'DOMContentLoaded', function contentLoaded() {
   const contentMarkup = document.getElementById( 'content' );
@@ -102,6 +47,6 @@ document.addEventListener( 'DOMContentLoaded', function contentLoaded() {
     document.removeEventListener( 'click', renderButtonClicked );
   });
 
-  contentMarkup.innerHTML = headContent.concat( body );
+  contentMarkup.innerHTML = headAndBody;
   renderContent.innerHTML = body;
 });
