@@ -1,4 +1,9 @@
-$icon-color: get-theme-values($prismTheme, 'bg-btn');
+$bg-btn: get-theme-values($prismTheme, 'bg-btn');
+$text-color: get-theme-values($prismTheme, 'text-color');
+$background: get-theme-values($prismTheme, 'bg');
+$title-color: get-theme-values($prismTheme, 'title-color');
+$title-color-2: get-theme-values($prismTheme, 'title-color-2');
+$td-shadow: get-theme-values($prismTheme, 'td-shadow');
 
 * {
   padding: 0;
@@ -18,16 +23,16 @@ $icon-color: get-theme-values($prismTheme, 'bg-btn');
 body {
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
-  background: get-theme-values($prismTheme, 'bg');
+  background: $background;
 }
 
 .theme {
-  background: get-theme-values($prismTheme, 'bg');
-  color: get-theme-values($prismTheme, 'text-color');
+  background: $background;
+  color: $text-color;
 }
 
 .divider {
-  background-image: url($divider);
+  background-image: fill-content-background-image($divider, $text-color, null);
   width: 110px;
   height: 45px;
   background-position: center;
@@ -75,13 +80,13 @@ pre[class*=language-] {
       }
 
       & .group-0 {
-        color: get-theme-values($prismTheme, 'title-color');
+        color: $title-color;
       }
       & .group-1 {
-        color: get-theme-values($prismTheme, 'title-color');
+        color: $title-color;
       }
       & .group-2 {
-        color: get-theme-values($prismTheme, 'title-color-2');
+        color: $title-color-2;
         margin-bottom: $gutter;
         
         @include breakpoint('small') {
@@ -101,7 +106,7 @@ pre[class*=language-] {
       width: 100%;
       display: block;
       margin: 0 auto;
-      background: darken(get-theme-values($prismTheme, 'bg-btn'), 5%);
+      background: darken($bg-btn, 5%);
       color: $white;
       border: inset 1px rgba($white, .7);
       border-radius: 4px;
@@ -111,13 +116,13 @@ pre[class*=language-] {
 
       &:hover {
         cursor: pointer;
-        background: darken(get-theme-values($prismTheme, 'bg-btn'), 10%);
+        background: darken($bg-btn, 10%);
       }
       &:focus {
         outline: $red;
       }
       &:active {
-        background: darken(get-theme-values($prismTheme, 'bg-btn'), 25%);
+        background: darken($bg-btn, 25%);
         border: 0;
       }
     }
@@ -160,11 +165,11 @@ pre[class*=language-] {
       list-style: none;
       
       &.dev-icons {
-        @include list-icon-generator($devIcons, 25, $icon-color);
+        @include list-icon-generator($devIcons, 25, $bg-btn);
       }
       
       &.me-icons {
-        @include list-icon-generator($devMe, 25, $icon-color);
+        @include list-icon-generator($devMe, 25, $bg-btn);
       }
     }
   }
@@ -205,7 +210,7 @@ pre[class*=language-] {
         }
       }
 
-      @include experience-builder($experienceIcons, $icon-color);
+      @include experience-builder($experienceIcons, $bg-btn);
       
       &:last-of-type {
         margin-bottom: $gutter;
@@ -219,7 +224,7 @@ pre[class*=language-] {
     &-item {
       margin-bottom: ($gutter);
       .resume__main-list {
-        @include list-icon-generator(code, 25, $icon-color);
+        @include list-icon-generator(code, 25, $bg-btn);
         
         span {
           display: flex;
@@ -246,7 +251,7 @@ pre[class*=language-] {
 
     td {
       padding: 10px 15px;
-      box-shadow: 0 0 3px get-theme-values($prismTheme, 'td-shadow');
+      box-shadow: 0 0 3px $td-shadow;
       flex-grow: 1;
       margin: 5px;
     }
@@ -269,8 +274,8 @@ pre[class*=language-] {
       width: 95%;
       margin: 0 auto;
       padding: 7px 5px 3px;
-      background: get-theme-values($prismTheme, 'bg');
-      color: get-theme-values($prismTheme, 'text-color');
+      background: $background;
+      color: $text-color;
       border: 1px inset;
       position: absolute;
       left: 0;

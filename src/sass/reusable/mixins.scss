@@ -15,7 +15,7 @@
   }
 }
 
-@mixin fill-content-background-image($url, $color, $icon) {
+@function fill-content-background-image($url, $color, $icon) {
   $base-color: str-slice(inspect($color), 2);
   $parsed: '';
 
@@ -25,12 +25,12 @@
     $parsed: unquote('url("' + $url + "?fill=%23" + $base-color + '")');
   }
 
-  content: $parsed;
+  @return $parsed;
 }
 
 @mixin before-pseudo-element($icon, $size, $color) {
   &::before {
-    @include fill-content-background-image('#{$img-path}#{$icon}.svg', $color, $icon);
+    content: fill-content-background-image('#{$img-path}#{$icon}.svg', $color, $icon);
     width: #{$size}px;
     height: #{$size}px;
     margin-right: 10px;
