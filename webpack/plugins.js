@@ -4,6 +4,7 @@ import CleanWebpackPlugin from 'clean-webpack-plugin';
 import WriteFilePlugin from 'write-file-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackInlineSourcePlugin from 'html-webpack-inline-source-plugin';
 import GoogleFontsPlugin from '@beyonk/google-fonts-webpack-plugin';
 import {
   headContentConfig as headTag
@@ -33,7 +34,9 @@ const devPlugins = [
     ]
   }),
 ];
-const prodPlugins = [];
+const prodPlugins = [
+  new HtmlWebpackInlineSourcePlugin(),
+];
 
 const plugins = process.env.NODE_ENV === 'development' ?
   devPlugins :
@@ -42,19 +45,20 @@ const plugins = process.env.NODE_ENV === 'development' ?
 
 module.exports = [
   new CleanWebpackPlugin(pathsToClean, cleanOptions),
+  new MiniCssExtractPlugin({
+    filename: devMode ? '[name].css' : '[name].[hash].css',
+      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+  }),
+  new CopyWebpackPlugin([
+    'src/toCopy'
+  ]),
   new HtmlWebpackPlugin({ 
     template: 'src/toCopy/index.html',
     description: headTag.description,
     author: headTag.author,
     keywords: headTag.keywords,
-    inject: false
-  }),
-  new CopyWebpackPlugin([
-    'src/toCopy'
-  ]),
-  new MiniCssExtractPlugin({
-    filename: devMode ? '[name].css' : '[name].[hash].css',
-    chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+    inlineSource: '.(css|js)$',
+    inject: 'head'
   }),
   ...plugins
 ];
