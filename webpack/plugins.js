@@ -1,9 +1,13 @@
-const webpack = require('webpack');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const WriteFilePlugin = require('write-file-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
+import WriteFilePlugin from 'write-file-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import GoogleFontsPlugin from '@beyonk/google-fonts-webpack-plugin';
+import {
+  headContentConfig as headTag
+} from '../src/config'
 
 const devMode = process.env.NODE_ENV !== 'production';
 const pathsToClean = [
@@ -40,7 +44,9 @@ module.exports = [
   new CleanWebpackPlugin(pathsToClean, cleanOptions),
   new HtmlWebpackPlugin({ 
     template: 'src/toCopy/index.html',
-    prism_theme: process.env.npm_config_prism_theme,
+    description: headTag.description,
+    author: headTag.author,
+    keywords: headTag.keywords,
     inject: false
   }),
   new CopyWebpackPlugin([

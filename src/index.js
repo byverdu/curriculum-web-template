@@ -4,7 +4,7 @@ const util = require( './utils' );
 import './sass/main.scss';
 
 if (prismTheme === 'dracula') {
-  require('../src/sass/prism-dracula.css');
+  require('../src/sass/themes/prism-dracula.css');
 } else {
   const tempTheme = prismTheme === 'prism' ? prismTheme : `prism-${prismTheme}`;
   require(`prismjs/themes/${tempTheme}.css`);
