@@ -19,7 +19,15 @@ const devPlugins = [
   new webpack.HotModuleReplacementPlugin(),
   new WriteFilePlugin({
     test: /^(?!.*(hot)).*/,
-  })
+  }),
+  new GoogleFontsPlugin({
+    path: '../src/sass/fonts/',
+    filename: '../src/sass/fonts.css',
+    fonts: [
+        { family: "BioRhyme Expanded" },
+        { family: "Roboto" }
+    ]
+  }),
 ];
 const prodPlugins = [];
 
