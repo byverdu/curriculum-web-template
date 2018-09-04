@@ -1,4 +1,3 @@
-@import 'vars';
-@import 'mixins';
-@import 'resume-theme';
+@import './reusable/index';
+@import './themes/resume-theme';
 // prism theme is added dynamiclly in '../index.js'
