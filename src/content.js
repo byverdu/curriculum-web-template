@@ -14,6 +14,5 @@ module.exports = {
     {
       name: '3rd grade of B.U.P. 1994-1998, Barcelona (Spain). Equivalent to A Levels in the UK'
     }
-  ],
-  skills: 'ES6.React, Angular and Aurelia.HTML5.NodeJS and modules.Npm ecosystem.Redux.TypeScript.CSS preprocessors.Responsive web design.BEM Methodology.Twitter Bootstrap.Cross Browser Testing.Test Driven Development.Agile Methodologies.Git.Command Line Interface.Unit Testing.jQuery.Unix Systems.Continous integration.Web APIs.Ability to translate wireframes from designs into functional webpages'
+  ]
 };

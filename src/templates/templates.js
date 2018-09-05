@@ -1,6 +1,7 @@
 import {
   htmlTagBuilder,
-  newLineAndTabsBuilder
+  newLineAndTabsBuilder,
+  newLineAndSpacesBuilder
 } from '../utils';
 
 /**
@@ -72,39 +73,68 @@ export function summaryTemplate(content, tagName) {
 }
 
 /**
+ * experienceTemplate
+ * @description Extracts info from Array of objects
  *
- *
- * @param {*} { date, company, items }
- * @returns
+ * @param {Array} experiences
+ * @returns String
  */
-function preExperiencesTemplate({ date, company, items }, isLastItem) {
-  const listItems = htmlTagBuilder( items.split( '.' ), 'li', 10);
+export function experienceTemplate( experiences ) {
+  let template = '';
   const oneTab = newLineAndTabsBuilder( 1 );
-  const addOneTab = isLastItem ? '' : oneTab;
+  const isLastItem = index => (index + 1) === experiences.length;
 
-  return `${oneTab}  <section class="resume__experience-item">
+  experiences.forEach((experience, index) => {
+    const { date, company, items } = experience;
+    const listItems = htmlTagBuilder( items.split( '.' ), 'li', 10);
+    const addOneTab = isLastItem(index) ? '' : oneTab;
+
+    template += `${oneTab}  <section class="resume__experience-item">
         <h3 class="resume__main-title">${company}</h3>
         <h4 class="resume__main-title">${date}</h4>
         <ul class="resume__main-list">
           ${listItems}
         </ul>
-      </section>${addOneTab}`;
-}
-
-export function experienceTemplate( experiences ) {
-  let template = '';
-  experiences.forEach((item, index) => {
-    const isLastItem = (index + 1) === experiences.length;
-    const temp = preExperiencesTemplate( item, isLastItem );
-    template = template.concat( temp );
+      </section>${addOneTab}`
   });
 
   return template;
 }
 
 /**
+ * skillsTemplate
+ * @description Footer tag template
+ * 
+ * @export
+ * @param {String} skills
+ * @returns String
+ */
+export function skillsTemplate( skills ) {
+  const splitSkills = skills.split( '.' );
+  const skillsPerRow = Math.floor( splitSkills.length / 5 );
+  let tableRows = '';
+  let count = splitSkills.length;
+
+  while ( count > 0 ) {
+    const firstItems = splitSkills.splice( 0, skillsPerRow );
+    const tdItems = htmlTagBuilder( firstItems, 'td', 8 );
+    const addSixSpacesOrBlank = (count / skillsPerRow > 1) ?
+      newLineAndSpacesBuilder() :
+      '';
+    
+    tableRows += `<tr>
+        ${tdItems}
+      </tr>${addSixSpacesOrBlank}`;
+    
+    count -= skillsPerRow;
+  }
+
+  return `${tableRows}`;
+}
+
+/**
  * footerContentTemplate
- * @description Footer tag builder
+ * @description Footer tag template
  *
  * @param {Object} {
  *   author = author name

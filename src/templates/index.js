@@ -4,6 +4,7 @@ import {
   contactDetailsContent,
   summaryContent,
   experiencesContent,
+  skillsContent,
   footerContent,
 } from '../../src/config';
 
@@ -12,14 +13,13 @@ import {
   asideItemTemplate,
   summaryTemplate,
   experienceTemplate,
+  skillsTemplate,
   footerTemplate
 } from './templates';
 
 import {
-  experienceBuilder,
   htmlCommentBuilder,
   educationBuilder,
-  skillsBuilder,
   dividerBuilder
 } from '../utils';
 
@@ -34,13 +34,13 @@ const head = headTemplate(headContent);
 const aside = asideItemTemplate(contactDetailsContent);
 const summary = summaryTemplate( summaryContent, 'p' );
 const experiences = experienceTemplate( experiencesContent );
+const skills = skillsTemplate(skillsContent);
 const footer = footerTemplate(footerContent);
 
 // legacy
 const content = require( '../content' );
 const {
   education,
-  skills
 } = content;
 
 // end legacy
@@ -81,7 +81,10 @@ const body = `
     ${dividerBuilder()}
 
     ${commentFor.skills}
-    ${skillsBuilder( skills )}
+    <h2 class="resume__main-title">${sectionTitles.skills}</h2>
+    <table class="resume__skills">
+      ${skills}
+    </table>
   </main>
   ${footer}`;
 

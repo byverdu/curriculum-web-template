@@ -71,11 +71,12 @@ export const contactDetailsContent = [
 export const sectionTitles = {
   summary: 'Summary',
   experience: 'Experience',
-  education: 'Education'
+  education: 'Education',
+  skills: 'Skills'
 };
 
 // Content for user summary
-// Keep the format, i.e. Array of of Ojects with this shape
+// Keep the format, i.e. Array of Strings
 export const summaryContent = [
   'Bacon ipsum dolor amet fatback brisket kevin burgdoggen buffalo. Pig doner sirloin turducken pancetta pork chop pork belly alcatra. Tri-tip salami kielbasa biltong. Fatback cupim pork belly ball tip.',
   'Shank shoulder strip steak ham hock tail ham pork alcatra short loin pork loin landjaeger meatball. Tail salami jerky sirloin ham swine pork chop ribeye. Doner flank tongue shank sirloin. Burgdoggen frankfurter pork belly meatball pork loin. Cupim capicola hamburger, biltong turkey chicken shankle turducken pig kevin strip steak jowl short loin.',
@@ -103,6 +104,10 @@ export const experiencesContent = [
     items: 'Corned beef prosciutto doner andouille t-bone jowl pancetta pork.Frankfurter flank kevin capicola shankle ribeye sirloin.Tail beef prosciutto, sausage landjaeger brisket buffalo pork chop rump jerky fatback.Frankfurter andouille jowl capicola'
   }
 ];
+
+// Content for user skills
+// Keep the format, i.e. a string where the delimeter is a dot '.'
+export const skillsContent = 'ES6.React, Angular and Aurelia.HTML5.NodeJS and modules.Npm ecosystem.Redux.TypeScript.CSS preprocessors.Responsive web design.BEM Methodology.Twitter Bootstrap.Cross Browser Testing.Test Driven Development.Agile Methodologies.Git.Command Line Interface.Unit Testing.jQuery.Unix Systems.Continous integration.Web APIs.Ability to translate wireframes from designs into functional webpages'
 
 // Content for <footer> tag
 export const footerContent = {

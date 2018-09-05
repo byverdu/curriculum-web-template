@@ -150,12 +150,12 @@ module.exports = ( function () {
     while ( count > 0 ) {
       const firstItems = splitSkills.splice( 0, skillsPerRow );
       const tdItems = htmlTagBuilder( firstItems, 'td', 8 );
-      const addSixSpaces = newLineAndSpacesBuilder();
-      const addSixSpacesOrBlank = (count / skillsPerRow >= 1) ? addSixSpaces : '';
+      const addSixSpacesOrBlank = (count / skillsPerRow > 1) ? newLineAndSpacesBuilder() : '';
       
-      tableRows += `<tr>${twoTabs}${tdItems}${addSixSpaces}</tr>${addSixSpacesOrBlank}`;
+      tableRows += `<tr>
+        ${tdItems}
+      </tr>${addSixSpacesOrBlank}`;
       
-      console.log(count / skillsPerRow)
       count -= skillsPerRow;
     }
 
