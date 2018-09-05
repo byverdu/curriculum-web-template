@@ -77,9 +77,10 @@ export function summaryTemplate(content, tagName) {
  * @param {*} { date, company, items }
  * @returns
  */
-function preExperiencesTemplate({ date, company, items }) {
-  const listItems = htmlTagBuilder( items.split( '.' ), 'li', 3 );
+function preExperiencesTemplate({ date, company, items }, isLastItem) {
+  const listItems = htmlTagBuilder( items.split( '.' ), 'li', 10);
   const oneTab = newLineAndTabsBuilder( 1 );
+  const addOneTab = isLastItem ? '' : oneTab;
 
   return `${oneTab}  <section class="resume__experience-item">
         <h3 class="resume__main-title">${company}</h3>
@@ -87,13 +88,14 @@ function preExperiencesTemplate({ date, company, items }) {
         <ul class="resume__main-list">
           ${listItems}
         </ul>
-      </section>${oneTab}`;
+      </section>${addOneTab}`;
 }
 
 export function experienceTemplate( experiences ) {
   let template = '';
-  experiences.forEach( item => {
-    const temp = preExperiencesTemplate( item );
+  experiences.forEach((item, index) => {
+    const isLastItem = (index + 1) === experiences.length;
+    const temp = preExperiencesTemplate( item, isLastItem );
     template = template.concat( temp );
   });
 

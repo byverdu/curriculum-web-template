@@ -45,6 +45,27 @@ module.exports = ( function () {
   }
 
   /**
+   * newLineAndSpacesBuilder
+   * @description Creates a string with a new line and as spaces
+   * as it's been specified in the parameter
+   * @param {Number} [numberSpaces = 6]
+   * @returns String
+   */
+  function newLineAndSpacesBuilder( numberSpaces = 6 ) {
+    if (isNaN(Number(numberSpaces))) {
+      return '';
+    }
+
+    let newLine = '\n';
+
+    for ( let i = 1; i <= numberSpaces; i += 1 ) {
+      newLine += ' ';
+    }
+
+    return newLine;
+  }
+
+  /**
    * htmlCommentBuilder
    * @description Creates an html comment with possible tabs
    * @param {string} text
@@ -82,18 +103,18 @@ module.exports = ( function () {
    * @param {number} [numberTabs=2]
    * @returns String
    */
-  function htmlTagBuilder( content, tag, numberTabs = 2 ) {
+  function htmlTagBuilder( content, tag, numberTabs = 6 ) {
 
     if (arguments.length < 2) {
       throw new WrongNumberArgsError('htmlTagBuilder', 2);
     }
 
-    const tabs = newLineAndTabsBuilder( numberTabs );
+    const spaces = newLineAndSpacesBuilder( numberTabs );
 
     return content.reduce(( acc, curr, index ) => {
-      const addTabs = index !== 0 ? `${tabs}` : '';
+      const addSpaces = index !== 0 ? `${spaces}` : '';
 
-      return acc.concat( `${addTabs}<${tag}>${curr}</${tag}>` );
+      return acc.concat( `${addSpaces}<${tag}>${curr}</${tag}>` );
     }, '' );
   }
 
@@ -143,6 +164,7 @@ module.exports = ( function () {
 
   return {
     newLineAndTabsBuilder,
+    newLineAndSpacesBuilder,
     htmlTagBuilder,
     htmlCommentBuilder,
     dividerBuilder,
