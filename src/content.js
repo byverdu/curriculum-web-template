@@ -1,21 +1,4 @@
 module.exports = {
-  experiences: [
-    {
-      date: 'Front End Developer || December 2017 – Present',
-      company: 'Scientific Games',
-      items: 'Developed javaScript apps for a multi-app SPA using ReactJS and Redux.Unit testing base for apps using Jest and Enzyme.Ensured cross browser/platform compliance.Contributed design, functionality and technology improvements.Contributed with FE micro-apps deployment and Continuous Integration systems'
-    },
-    {
-      date: 'Front End Developer || June 2016 – November 2017',
-      company: 'Clarksons Platou',
-      items: 'Developed new user interfaces for internal web applications using the Aurelia framework and Typescript.Creation and maintenance of style sheets using SASS.Wrote custom solutions with typescript using third party libraries to integrate them for the internal web applications.Workflow based on sprints, scrum meetings, Kanban boards and Agile methodologies'
-    },
-    {
-      date: 'Front End Developer || February 2015 – June 2016',
-      company: 'Deloitte Digital',
-      items: 'Developed UI components for CMS Hybris with FlightJS by following the designer wireframes and user stories provided by Business Analysts.Solved Front End defects before the websites go live, cross-browser and device related issues Front End Developer.Wrote acceptance tests with Selenium Webdriver to ensure that clients website\’s met the functionality specified by the acceptance criteria for the user stories provided by Business Analysts.Built websites and internal apps by using front end technologies, such as HTML, Sass and Javascript (jQuery, React, Meteor).Workflow based on sprints, scrum meetings, Kanban boards and Agile methodologies'
-    }
-  ],
   education: [
     {
       name: 'Makers Academy Aug 2014 – Oct 2014, London (UK)',

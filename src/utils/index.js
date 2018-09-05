@@ -131,10 +131,10 @@ module.exports = ( function () {
       const liTag = 'li';
       const spanTag = 'span';
 
-      return acc.concat( `${addTabs}<${liTag}>${threeTabs}<${spanTag}>${curr.name}${hasDetail}${twoTabs}</${spanTag}></${liTag}>` );
+      return acc.concat( `${addTabs}<${liTag}>${twoTabs}<${spanTag}>${curr.name}${hasDetail}${twoTabs}</${spanTag}></${liTag}>` );
     }, '' );
 
-    return `<section class="resume__education-item">
+    return `  <section class="resume__education-item">
       <ul class="resume__main-list">
         ${content}
       </ul>
@@ -147,12 +147,15 @@ module.exports = ( function () {
     let tableRows = '';
     let count = splitSkills.length;
 
-    while ( count >= 0 ) {
+    while ( count > 0 ) {
       const firstItems = splitSkills.splice( 0, skillsPerRow );
-      const tdItems = htmlTagBuilder( firstItems, 'td' );
-
-      tableRows += `<tr>${twoTabs}${tdItems}${oneTab}  </tr>${twoTabs}`;
-
+      const tdItems = htmlTagBuilder( firstItems, 'td', 8 );
+      const addSixSpaces = newLineAndSpacesBuilder();
+      const addSixSpacesOrBlank = (count / skillsPerRow >= 1) ? addSixSpaces : '';
+      
+      tableRows += `<tr>${twoTabs}${tdItems}${addSixSpaces}</tr>${addSixSpacesOrBlank}`;
+      
+      console.log(count / skillsPerRow)
       count -= skillsPerRow;
     }
 
