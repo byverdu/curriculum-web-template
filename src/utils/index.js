@@ -60,7 +60,7 @@ module.exports = ( function () {
       }
     }
     
-    return `${tempTab}<!-- ${text} -->\n`;
+    return `${tempTab}<!-- ${text} -->`;
   }
 
   /**
@@ -103,52 +103,6 @@ module.exports = ( function () {
   const twoTabs = newLineAndTabsBuilder( 2 );
   const threeTabs = newLineAndTabsBuilder( 3 );
 
-
-
-
-
-
-
-
-
-
-  
-  function asideItemBuilder( array, headerTittle, id = '' ) {
-    const listItems = htmlTagBuilder( array, 'li' );
-
-    return `<nav class="resume__aside-nav">
-      <h4 class="resume__aside-title">${headerTittle}</h4>
-      <ul class="resume__aside-list ${id}">
-        ${listItems}
-      </ul>
-    </nav>`;
-  }
-
-  function preExperiencesBuilder( experiences ) {
-    const {
-      date, company, items
-    } = experiences;
-    const listItems = htmlTagBuilder( items.split( '.' ), 'li' );
-
-    return `<section class="resume__experience-item">
-      <h3 class="resume__main-title">${company}</h3>
-      <h4 class="resume__main-title">${date}</h4>
-      <ul class="resume__main-list">
-        ${listItems}
-      </ul>
-    </section>${oneTab}`;
-  }
-
-  function experienceBuilder( experiences ) {
-    let template = '';
-    experiences.forEach( item => {
-      const temp = preExperiencesBuilder( item );
-      template = template.concat( temp );
-    });
-
-    return template;
-  }
-
   function educationBuilder( education ) {
     const content = education.reduce(( acc, curr, index ) => {
       const addTabs = index !== 0 ? `${twoTabs}` : '';
@@ -189,9 +143,7 @@ module.exports = ( function () {
 
   return {
     newLineAndTabsBuilder,
-    asideItemBuilder,
     htmlTagBuilder,
-    experienceBuilder,
     htmlCommentBuilder,
     dividerBuilder,
     educationBuilder,

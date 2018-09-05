@@ -1,6 +1,6 @@
 import {
-  headContentConfig,
-  footerContentConfig
+  headContent,
+  footerContent
 } from '../src/config';
 
 describe('Content data', () => {
@@ -12,18 +12,18 @@ describe('Content data', () => {
     ];
   
     it( 'should be defined', () => {
-      expect(headContentConfig).toBeDefined();
+      expect(headContent).toBeDefined();
     });
     it( 'should be an object', () => {
-      expect(headContentConfig).toBeInstanceOf(Object);
+      expect(headContent).toBeInstanceOf(Object);
     });
     it( 'should have 3 properties', () => {
-      expect(Object.keys(headContentConfig)).toHaveLength(3);
+      expect(Object.keys(headContent)).toHaveLength(3);
     });
     headProperties.forEach(prop => {
       const { key, value } = prop;
       it(`should have property ${key} with value ${value}`, () => {
-        expect(headContentConfig[key]).toContain(value)
+        expect(headContent[key]).toContain(value)
       });
     })
   });
@@ -35,19 +35,19 @@ describe('Content data', () => {
     ];
   
     it( 'should be defined', () => {
-      expect(footerContentConfig).toBeDefined();
+      expect(footerContent).toBeDefined();
     });
     it( 'should be an object', () => {
-      expect(footerContentConfig).toBeInstanceOf(Object);
+      expect(footerContent).toBeInstanceOf(Object);
     });
     it( 'should have an author property', () => {
-      expect(footerContentConfig).toHaveProperty('author');
-      expect(typeof footerContentConfig.author).toEqual('string');
+      expect(footerContent).toHaveProperty('author');
+      expect(typeof footerContent.author).toEqual('string');
     });
     headProperties.forEach(prop => {
       const { key, value } = prop;
       it(`should have property ${key} with value ${value}`, () => {
-        expect(headContentConfig[key]).toContain(value)
+        expect(headContent[key]).toContain(value)
       });
     })
   });

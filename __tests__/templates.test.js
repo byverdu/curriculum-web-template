@@ -1,31 +1,30 @@
-import {templates} from '../src/templates';
 import {
-  headContentConfig,
-  footerContentConfig
+  headTemplate,
+  footerTemplate
+} from '../src/templates/templates';
+import {
+  headContent,
+  footerContent
 } from '../src/config';
 
-const {
-  headContentTemplate,
-  footerContentTemplate
-} = templates;
 
 describe('Templates', () => {
   describe('Head Content template', () => {
     const mockHead = jest.fn();
-    const result = headContentTemplate(headContentConfig);
+    const result = headTemplate(headContent);
 
     it( 'should be defined', () => {
-      expect(headContentTemplate).toBeDefined();
+      expect(headTemplate).toBeDefined();
     });
     it( 'should be function', () => {
-      expect(typeof headContentTemplate).toBe('function');
+      expect(typeof headTemplate).toBe('function');
     });
-    it( 'should use headContentConfig data', () => {
-      mockHead(headContentConfig);
+    it( 'should use headContent data', () => {
+      mockHead(headContent);
 
-      expect(mockHead).toHaveBeenCalledWith(headContentConfig);
+      expect(mockHead).toHaveBeenCalledWith(headContent);
     });
-    Object.values(headContentConfig)
+    Object.values(headContent)
       .forEach(value => {
         it(`should contain ${value} from head content`, () => {
           expect(result).toContain(value);
@@ -34,18 +33,18 @@ describe('Templates', () => {
   });
   describe('Footer Content template', () => {
     const mockFooter = jest.fn();
-    const result = footerContentTemplate(footerContentConfig);
+    const result = footerTemplate(footerContent);
 
     it( 'should be defined', () => {
-      expect(footerContentTemplate).toBeDefined();
+      expect(footerTemplate).toBeDefined();
     });
     it( 'should be function', () => {
-      expect(typeof footerContentTemplate).toBe('function');
+      expect(typeof footerTemplate).toBe('function');
     });
-    it( 'should use footerContentConfig data', () => {
-      mockFooter(footerContentConfig);
+    it( 'should use footerContent data', () => {
+      mockFooter(footerContent);
 
-      expect(mockFooter).toHaveBeenCalledWith(footerContentConfig);
+      expect(mockFooter).toHaveBeenCalledWith(footerContent);
     });
     it('should contain values from footer content', () => {
       expect(result).toContain('@DoeJohn');

@@ -1,18 +1,21 @@
 import {
-  headContentConfig,
-  contactDetailsContentConfig,
-  footerContentConfig,
+  sectionTitles,
+  headContent,
+  contactDetailsContent,
+  summaryContent,
+  experiencesContent,
+  footerContent,
 } from '../../src/config';
 
 import {
-  headContentTemplate,
-  asideItemContentTemplate,
-  footerContentTemplate
+  headTemplate,
+  asideItemTemplate,
+  summaryTemplate,
+  experienceTemplate,
+  footerTemplate
 } from './templates';
 
 import {
-  asideItemBuilder,
-  htmlTagBuilder,
   experienceBuilder,
   htmlCommentBuilder,
   educationBuilder,
@@ -20,69 +23,69 @@ import {
   dividerBuilder
 } from '../utils';
 
-const headContent = headContentTemplate(headContentConfig);
-const footerContent = footerContentTemplate(footerContentConfig);
-let asideContent = '';
-
-contactDetailsContentConfig.forEach(item => {
-  const {details, headerTitle, className} = item;
-  asideContent += asideItemBuilder(details, headerTitle, className);
-})
+const commentFor = {
+  contactDetails: htmlCommentBuilder( 'Contact Details Section' ),
+  summary: htmlCommentBuilder( 'Personal Summary Section' ),
+  experience: htmlCommentBuilder( 'Experience Section' ),
+  education: htmlCommentBuilder( 'Education Section' ),
+  skills: htmlCommentBuilder( 'Skills Section' ),
+};
+const head = headTemplate(headContent);
+const aside = asideItemTemplate(contactDetailsContent);
+const summary = summaryTemplate( summaryContent, 'p' );
+const experiences = experienceTemplate( experiencesContent );
+const footer = footerTemplate(footerContent);
 
 // legacy
 const content = require( '../content' );
 const {
-  contactDetails,
-  networkDetails,
-  summaryContent,
-  experiences,
   education,
   skills
 } = content;
 
 // end legacy
 
-const asideContacts = asideItemBuilder( contactDetails, 'Contact Details', 'me-icons' );
-const asideNetwork = asideItemBuilder( networkDetails, 'Dev Network Details', 'dev-icons' );
-const summary = htmlTagBuilder( summaryContent, 'p' );
-const experienceContent = experienceBuilder( experiences );
-const summaryComment = htmlCommentBuilder( 'Personal Summary Section' );
-const experienceComment = htmlCommentBuilder( 'Experience Section' );
-const educationComment = htmlCommentBuilder( 'Education Section' );
-const skillsComment = htmlCommentBuilder( 'Skills Section' );
 
 const body = `
+
+  ${commentFor.contactDetails}
   <aside class="resume__aside">
-    ${asideContent}
+    ${aside}
   </aside>
+
+  ${dividerBuilder()}
+
   <main class="resume__main">
-    ${summaryComment}
+    ${commentFor.summary}
     <section class="resume__summary">
-      <h2 class="resume__main-title">Summary</h2>
+      <h2 class="resume__main-title">${sectionTitles.summary}</h2>
       ${summary}
     </section>
   
     ${dividerBuilder()}
-    ${experienceComment}
+
+    ${commentFor.experience}
     <section class="resume__experience">
-      <h2 class="resume__main-title">Experience</h2>
-      ${experienceContent}
+      <h2 class="resume__main-title">${sectionTitles.experience}</h2>
+      ${experiences}
     </section>
 
     ${dividerBuilder()}
-    ${educationComment}
+
+    ${commentFor.education}
     <section class="resume__education">
-      <h2 class="resume__main-title">Education</h2>
-      ${educationBuilder( education )}
+      <h2 class="resume__main-title">${sectionTitles.education}</h2>
+    ${educationBuilder( education )}
     </section>
 
     ${dividerBuilder()}
-    ${skillsComment}
+
+    ${commentFor.skills}
     ${skillsBuilder( skills )}
   </main>
-  ${footerContent}`;
+  ${footer}`;
 
-const headAndBody = headContent.concat( body );
+const headAndBody = head.concat( body );
 
 export {
   body,

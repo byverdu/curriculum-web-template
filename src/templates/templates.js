@@ -1,9 +1,10 @@
 import {
-  htmlTagBuilder
+  htmlTagBuilder,
+  newLineAndTabsBuilder
 } from '../utils';
 
 /**
- * headContentTemplate
+ * headTemplate
  * @description Head tag builder that contains most used meta tags
  *
  * @param {Object} {
@@ -13,7 +14,7 @@ import {
  * }
  * @returns String
  */
-export function headContentTemplate({
+export function headTemplate({
   description, keywords, author
 }) {
   return `<!DOCTYPE html>
@@ -32,24 +33,71 @@ export function headContentTemplate({
 }
 
 /**
- * asideItemContentTemplate
+ * asideItemTemplate
  * @description Aside Item builder
  * 
- * @param {Array} array 
- * @param {String} headerTittle 
- * @param {String} id
+ * @param {Array} arrayDetails
  * 
  *  @returns String
  */
-export function asideItemContentTemplate( array, headerTittle, className = '' ) {
-  const listItems = htmlTagBuilder( array, 'li' );
+export function asideItemTemplate(arrayDetails) {
+  let aside = '';
+  
+  arrayDetails.forEach((item, index) => {
+    const { details, headerTitle, className } = item;
+    const listItems = htmlTagBuilder( details, 'li' );
+    const addTab = (index === 0) ? newLineAndTabsBuilder( 1 ) : '';
 
-  return `<nav class="resume__aside-nav">
-    <h4 class="resume__aside-title">${headerTittle}</h4>
+    aside += `<nav class="resume__aside-nav">
+    <h4 class="resume__aside-title">${headerTitle}</h4>
     <ul class="resume__aside-list ${className}">
       ${listItems}
     </ul>
-  </nav>`;
+  </nav>${addTab}`;
+  });
+
+  return aside;
+}
+
+/**
+ * summaryTemplate
+ * @description Your personnal summary template
+ * @export
+ * @param {Array} content
+ * @param {String} tagName
+ * @returns String
+ */
+export function summaryTemplate(content, tagName) {
+  return htmlTagBuilder( content, tagName );
+}
+
+/**
+ *
+ *
+ * @param {*} { date, company, items }
+ * @returns
+ */
+function preExperiencesTemplate({ date, company, items }) {
+  const listItems = htmlTagBuilder( items.split( '.' ), 'li', 3 );
+  const oneTab = newLineAndTabsBuilder( 1 );
+
+  return `${oneTab}  <section class="resume__experience-item">
+        <h3 class="resume__main-title">${company}</h3>
+        <h4 class="resume__main-title">${date}</h4>
+        <ul class="resume__main-list">
+          ${listItems}
+        </ul>
+      </section>${oneTab}`;
+}
+
+export function experienceTemplate( experiences ) {
+  let template = '';
+  experiences.forEach( item => {
+    const temp = preExperiencesTemplate( item );
+    template = template.concat( temp );
+  });
+
+  return template;
 }
 
 /**
@@ -61,7 +109,7 @@ export function asideItemContentTemplate( array, headerTittle, className = '' ) 
  * }
  * @returns String
  */
-export function footerContentTemplate ({author}) {
+export function footerTemplate ({author}) {
   return `<footer class="resume__footer">
       <p class="resume__footer-copy">Made with <span>&lt;3</span> by ${author}, <b class="js-footer-year">2018</b></p>
     </footer>`;

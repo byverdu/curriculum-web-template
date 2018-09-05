@@ -7,7 +7,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import HtmlWebpackInlineSourcePlugin from 'html-webpack-inline-source-plugin';
 import GoogleFontsPlugin from '@beyonk/google-fonts-webpack-plugin';
 import {
-  headContentConfig as headTag
+  headContent as headTag
 } from '../src/config'
 
 const devMode = process.env.NODE_ENV !== 'production';
