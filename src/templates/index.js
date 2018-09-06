@@ -46,49 +46,50 @@ const {
 // end legacy
 
 
-const body = `
+const body = `${commentFor.contactDetails}
+      <aside class="resume__aside">
+        ${aside}
+      </aside>
 
-  ${commentFor.contactDetails}
-  <aside class="resume__aside">
-    ${aside}
-  </aside>
+      ${dividerBuilder()}
 
-  ${dividerBuilder()}
+      <main class="resume__main">
+        ${commentFor.summary}
+        <section class="resume__summary">
+          <h2 class="resume__main-title">${sectionTitles.summary}</h2>
+          ${summary}
+        </section>
+      
+        ${dividerBuilder()}
 
-  <main class="resume__main">
-    ${commentFor.summary}
-    <section class="resume__summary">
-      <h2 class="resume__main-title">${sectionTitles.summary}</h2>
-      ${summary}
-    </section>
-  
-    ${dividerBuilder()}
+        ${commentFor.experience}
+        <section class="resume__experience">
+          <h2 class="resume__main-title">${sectionTitles.experience}</h2>
+          ${experiences}
+        </section>
 
-    ${commentFor.experience}
-    <section class="resume__experience">
-      <h2 class="resume__main-title">${sectionTitles.experience}</h2>
-      ${experiences}
-    </section>
+        ${dividerBuilder()}
 
-    ${dividerBuilder()}
+        ${commentFor.education}
+        <section class="resume__education">
+          <h2 class="resume__main-title">${sectionTitles.education}</h2>
+        ${educationBuilder( education )}
+        </section>
 
-    ${commentFor.education}
-    <section class="resume__education">
-      <h2 class="resume__main-title">${sectionTitles.education}</h2>
-    ${educationBuilder( education )}
-    </section>
+        ${dividerBuilder()}
 
-    ${dividerBuilder()}
+        ${commentFor.skills}
+        <h2 class="resume__main-title">${sectionTitles.skills}</h2>
+        <table class="resume__skills">
+          ${skills}
+        </table>
+      </main>
+      ${footer}`;
 
-    ${commentFor.skills}
-    <h2 class="resume__main-title">${sectionTitles.skills}</h2>
-    <table class="resume__skills">
-      ${skills}
-    </table>
-  </main>
-  ${footer}`;
-
-const headAndBody = head.concat( body );
+const headAndBody = `${head}
+      ${body}
+  </body>
+</html>`;
 
 export {
   body,

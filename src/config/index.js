@@ -78,9 +78,9 @@ export const sectionTitles = {
 // Content for user summary
 // Keep the format, i.e. Array of Strings
 export const summaryContent = [
-  'Bacon ipsum dolor amet fatback brisket kevin burgdoggen buffalo. Pig doner sirloin turducken pancetta pork chop pork belly alcatra. Tri-tip salami kielbasa biltong. Fatback cupim pork belly ball tip.',
-  'Shank shoulder strip steak ham hock tail ham pork alcatra short loin pork loin landjaeger meatball. Tail salami jerky sirloin ham swine pork chop ribeye. Doner flank tongue shank sirloin. Burgdoggen frankfurter pork belly meatball pork loin. Cupim capicola hamburger, biltong turkey chicken shankle turducken pig kevin strip steak jowl short loin.',
-  'Corned beef prosciutto doner andouille t-bone jowl pancetta pork, frankfurter flank kevin capicola shankle ribeye sirloin. Tail beef prosciutto, sausage landjaeger brisket buffalo pork chop rump jerky fatback. Frankfurter andouille jowl capicola, filet mignon corned beef biltong picanha. Chicken prosciutto sirloin drumstick sausage.'
+  'Bacon ipsum dolor amet fatback brisket kevin burgdoggen buffalo.',
+  'Shank shoulder strip steak ham hock tail ham pork alcatra short loin pork loin landjaeger meatball.',
+  'Corned beef prosciutto doner andouille t-bone jowl pancetta pork, frankfurter flank kevin capicola shankle ribeye sirloin.'
 ];
 
 

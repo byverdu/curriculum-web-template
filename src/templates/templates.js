@@ -1,7 +1,9 @@
 import {
   htmlTagBuilder,
   newLineAndTabsBuilder,
-  newLineAndSpacesBuilder
+  newLineAndSpacesBuilder,
+  isLastItem,
+  addTabSpaceOrBlank
 } from '../utils';
 
 /**
@@ -46,15 +48,15 @@ export function asideItemTemplate(arrayDetails) {
   
   arrayDetails.forEach((item, index) => {
     const { details, headerTitle, className } = item;
-    const listItems = htmlTagBuilder( details, 'li' );
-    const addTab = (index === 0) ? newLineAndTabsBuilder( 1 ) : '';
-
+    const listItems = htmlTagBuilder( details, 'li', 12 );
+    const addTab = addTabSpaceOrBlank(!isLastItem(arrayDetails, index), 'tab', 2);
+  
     aside += `<nav class="resume__aside-nav">
-    <h4 class="resume__aside-title">${headerTitle}</h4>
-    <ul class="resume__aside-list ${className}">
-      ${listItems}
-    </ul>
-  </nav>${addTab}`;
+          <h4 class="resume__aside-title">${headerTitle}</h4>
+          <ul class="resume__aside-list ${className}">
+            ${listItems}
+          </ul>
+        </nav>${addTab}`;
   });
 
   return aside;
@@ -69,7 +71,7 @@ export function asideItemTemplate(arrayDetails) {
  * @returns String
  */
 export function summaryTemplate(content, tagName) {
-  return htmlTagBuilder( content, tagName );
+  return htmlTagBuilder( content, tagName, 10 );
 }
 
 /**
@@ -81,21 +83,21 @@ export function summaryTemplate(content, tagName) {
  */
 export function experienceTemplate( experiences ) {
   let template = '';
-  const oneTab = newLineAndTabsBuilder( 1 );
-  const isLastItem = index => (index + 1) === experiences.length;
+  const oneTab = newLineAndSpacesBuilder(10);
+  // const isLastItem = index => (index + 1) === experiences.length;
 
   experiences.forEach((experience, index) => {
     const { date, company, items } = experience;
-    const listItems = htmlTagBuilder( items.split( '.' ), 'li', 10);
-    const addOneTab = isLastItem(index) ? '' : oneTab;
+    const listItems = htmlTagBuilder( items.split( '.' ), 'li', 14);
+    const addTab = addTabSpaceOrBlank(!isLastItem(experiences, index), 'tab', 1);
 
-    template += `${oneTab}  <section class="resume__experience-item">
-        <h3 class="resume__main-title">${company}</h3>
-        <h4 class="resume__main-title">${date}</h4>
-        <ul class="resume__main-list">
-          ${listItems}
-        </ul>
-      </section>${addOneTab}`
+    template += `${oneTab}<section class="resume__experience-item">
+            <h3 class="resume__main-title">${company}</h3>
+            <h4 class="resume__main-title">${date}</h4>
+            <ul class="resume__main-list">
+              ${listItems}
+            </ul>
+          </section>${addTab}`
   });
 
   return template;
@@ -117,19 +119,18 @@ export function skillsTemplate( skills ) {
 
   while ( count > 0 ) {
     const firstItems = splitSkills.splice( 0, skillsPerRow );
-    const tdItems = htmlTagBuilder( firstItems, 'td', 8 );
-    const addSixSpacesOrBlank = (count / skillsPerRow > 1) ?
-      newLineAndSpacesBuilder() :
-      '';
+    const tdItems = htmlTagBuilder( firstItems, 'td', 12 );
+    const addSpaces = addTabSpaceOrBlank((count / skillsPerRow > 1), 'space');
+    const addTabs = addTabSpaceOrBlank((count !== splitSkills.length), 'space', 10);
     
-    tableRows += `<tr>
-        ${tdItems}
-      </tr>${addSixSpacesOrBlank}`;
+    tableRows += `${addTabs}<tr>
+            ${tdItems}
+          </tr>${addSpaces}`;
     
     count -= skillsPerRow;
   }
 
-  return `${tableRows}`;
+  return tableRows;
 }
 
 /**
@@ -143,6 +144,6 @@ export function skillsTemplate( skills ) {
  */
 export function footerTemplate ({author}) {
   return `<footer class="resume__footer">
-      <p class="resume__footer-copy">Made with <span>&lt;3</span> by ${author}, <b class="js-footer-year">2018</b></p>
-    </footer>`;
+        <p class="resume__footer-copy">Made with <span>&lt;3</span> by ${author}, <b class="js-footer-year">2018</b></p>
+      </footer>`;
 }

@@ -118,6 +118,16 @@ module.exports = ( function () {
     }, '' );
   }
 
+  function addTabSpaceOrBlank(condition, type, counter) {
+    const method = type === 'tab' ? newLineAndTabsBuilder : newLineAndSpacesBuilder;
+
+    return condition ? method(counter) : '';
+  }
+
+  function isLastItem(array, index) {
+    return (index + 1) === array.length;
+  }
+
 
 
   const oneTab = newLineAndTabsBuilder( 1 );
@@ -126,43 +136,25 @@ module.exports = ( function () {
 
   function educationBuilder( education ) {
     const content = education.reduce(( acc, curr, index ) => {
-      const addTabs = index !== 0 ? `${twoTabs}` : '';
-      const hasDetail = curr.detail ? `${threeTabs}<em class="resume__education-detail">${curr.detail}</em>` : '';
+      const addTabs = addTabSpaceOrBlank((index !== 0), 'tab', 2);
+      const hasDetail = curr.detail ? `${threeTabs}    <em class="resume__education-detail">${curr.detail}</em>` : '';
       const liTag = 'li';
       const spanTag = 'span';
 
-      return acc.concat( `${addTabs}<${liTag}>${twoTabs}<${spanTag}>${curr.name}${hasDetail}${twoTabs}</${spanTag}></${liTag}>` );
+      acc += `${addTabs}<${liTag}>
+              <${spanTag}>
+                ${curr.name}${hasDetail}
+              </${spanTag}>
+            </${liTag}>`
+
+      return acc;
     }, '' );
 
     return `  <section class="resume__education-item">
-      <ul class="resume__main-list">
-        ${content}
-      </ul>
-    </section>${oneTab}`;
-  }
-
-  function skillsBuilder( skills ) {
-    const splitSkills = skills.split( '.' );
-    const skillsPerRow = Math.floor( splitSkills.length / 5 );
-    let tableRows = '';
-    let count = splitSkills.length;
-
-    while ( count > 0 ) {
-      const firstItems = splitSkills.splice( 0, skillsPerRow );
-      const tdItems = htmlTagBuilder( firstItems, 'td', 8 );
-      const addSixSpacesOrBlank = (count / skillsPerRow > 1) ? newLineAndSpacesBuilder() : '';
-      
-      tableRows += `<tr>
-        ${tdItems}
-      </tr>${addSixSpacesOrBlank}`;
-      
-      count -= skillsPerRow;
-    }
-
-    return `<h2 class="resume__main-title">Skills</h2>
-    <table class="resume__skills">
-      ${tableRows}
-    </table>`;
+          <ul class="resume__main-list">
+            ${content}
+          </ul>
+        </section>${oneTab}`;
   }
 
   return {
@@ -171,7 +163,8 @@ module.exports = ( function () {
     htmlTagBuilder,
     htmlCommentBuilder,
     dividerBuilder,
+    addTabSpaceOrBlank,
+    isLastItem,
     educationBuilder,
-    skillsBuilder
   };
 }());
