@@ -68,7 +68,7 @@ module.exports = ( function () {
   }
 
   /**
-   * @name spaceCounter
+   * @name whiteSpaceBuilder
    * @description generates white space depending as per argument passed
    * 
    * @param {Number} spaceCounter
@@ -91,9 +91,10 @@ module.exports = ( function () {
   /** 
    * @name addTabSpaceOrBlank
    * @description calls a method depending the argument type
+   * calls [newLineAndTabsBuilder, newLineAndSpacesBuilder, whiteSpaceBuilder] respectively
    * 
    * @param {Boolean} condition 
-   * @param {String} type 
+   * @param {String} type > tab, space or whiteSpace
    * @param {Number} counter
    * 
    * @returns String
