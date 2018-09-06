@@ -113,3 +113,11 @@ export const skillsContent = 'ES6.React, Angular and Aurelia.HTML5.NodeJS and mo
 export const footerContent = {
   author: '@DoeJohn'
 }
+
+// Global text
+export const globalText = {
+  textBtn: {
+    asCode: 'Render as Prism',
+    asHtml: 'Render as HTML'
+  }
+}

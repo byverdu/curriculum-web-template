@@ -7,7 +7,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import HtmlWebpackInlineSourcePlugin from 'html-webpack-inline-source-plugin';
 import GoogleFontsPlugin from '@beyonk/google-fonts-webpack-plugin';
 import {
-  headContent as headTag
+  headContent as headTag,
+  globalText
 } from '../src/config'
 
 const devMode = process.env.NODE_ENV !== 'production';
@@ -57,6 +58,7 @@ module.exports = [
     description: headTag.description,
     author: headTag.author,
     keywords: headTag.keywords,
+    textBtn: globalText.textBtn.asHtml,
     inlineSource: '.(css|js)$',
     inject: 'head',
     minify: true

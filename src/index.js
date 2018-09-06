@@ -1,6 +1,7 @@
 import {
   prismThemeLoader,
-  prismTheme
+  prismTheme,
+  globalText
 } from '../src/config';
 
 import {
@@ -15,6 +16,11 @@ prismThemeLoader(prismTheme);
 document.addEventListener( 'DOMContentLoaded', function contentLoaded() {
   const contentMarkup = document.getElementById( 'content' );
   const renderContent = document.getElementById( 'renderContent' );
+  const { textBtn: {
+      asCode: asCode,
+      asHtml: asHtml,
+    }
+  } = globalText;
 
   prettyLetters( '#headerTitle' ); // eslint-disable-line
 
@@ -24,7 +30,7 @@ document.addEventListener( 'DOMContentLoaded', function contentLoaded() {
     const yearTarget = document.querySelector( '.js-footer-year' );
     const isHidden = markup.className.includes( 'is-hidden' );
     const eventTarget = event.target;
-    const textButton = isHidden ? 'Render As Markup' : 'Render As Code';
+    const textButton = isHidden ? `${asHtml}` : `${asCode}`;
 
 
     eventTarget.textContent = textButton;

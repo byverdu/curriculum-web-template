@@ -38,16 +38,19 @@
         id="renderButton"
         class="resume__header-button"
       >
-        Render As HTML
+        <%= htmlWebpackPlugin.options.textBtn %>
       </button>
       <h1
         class="resume__header-title is-hidden"
         id="headerTitle"
       >
-        Albert Vallverdu Resume
+        <%= htmlWebpackPlugin.options.description %>
       </h1>
     </header>
-    <section id="renderContent" class="resume__content is-hidden"></section>
+    <section
+      id="renderContent"
+      class="resume__content is-hidden"
+    ></section>
   </section>
   <section>
 
