@@ -5,6 +5,7 @@ import {
   summaryContent,
   experiencesContent,
   skillsContent,
+  educationContent,
   footerContent,
 } from '../../src/config';
 
@@ -14,12 +15,12 @@ import {
   summaryTemplate,
   experienceTemplate,
   skillsTemplate,
+  educationTemplate,
   footerTemplate
 } from './templates';
 
 import {
   htmlCommentBuilder,
-  educationBuilder,
   dividerBuilder
 } from '../utils';
 
@@ -35,16 +36,8 @@ const aside = asideItemTemplate(contactDetailsContent);
 const summary = summaryTemplate( summaryContent, 'p' );
 const experiences = experienceTemplate( experiencesContent );
 const skills = skillsTemplate(skillsContent);
+const education = educationTemplate(educationContent);
 const footer = footerTemplate(footerContent);
-
-// legacy
-const content = require( '../content' );
-const {
-  education,
-} = content;
-
-// end legacy
-
 
 const body = `${commentFor.contactDetails}
       <aside class="resume__aside">
@@ -73,7 +66,7 @@ const body = `${commentFor.contactDetails}
         ${commentFor.education}
         <section class="resume__education">
           <h2 class="resume__main-title">${sectionTitles.education}</h2>
-        ${educationBuilder( education )}
+        ${education}
         </section>
 
         ${dividerBuilder()}
@@ -88,8 +81,8 @@ const body = `${commentFor.contactDetails}
 
 const headAndBody = `${head}
       ${body}
-  </body>
-</html>`;
+    </body>
+  </html>`;
 
 export {
   body,

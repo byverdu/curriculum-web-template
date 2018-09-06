@@ -24,10 +24,11 @@ module.exports = ( function () {
   }
   
   /**
-   * newLineAndTabsBuilder
+   * @name newLineAndTabsBuilder
    * @description Creates a string with a new line and as tabs
    * as it's been specified in the parameter
    * @param {Number} numberTabs
+   * 
    * @returns String
    */
   function newLineAndTabsBuilder( numberTabs ) {
@@ -45,10 +46,11 @@ module.exports = ( function () {
   }
 
   /**
-   * newLineAndSpacesBuilder
+   * @name newLineAndSpacesBuilder
    * @description Creates a string with a new line and as spaces
    * as it's been specified in the parameter
    * @param {Number} [numberSpaces = 6]
+   * 
    * @returns String
    */
   function newLineAndSpacesBuilder( numberSpaces = 6 ) {
@@ -66,10 +68,52 @@ module.exports = ( function () {
   }
 
   /**
-   * htmlCommentBuilder
+   * @name spaceCounter
+   * @description generates white space depending as per argument passed
+   * 
+   * @param {Number} spaceCounter
+   * 
+   * @returns String
+   */
+  function whiteSpaceBuilder(spaceCounter) {
+    if (arguments.length < 1) {
+      throw new WrongNumberArgsError('whiteSpaceBuilder', 1);
+    }
+    let space = '';
+
+    for ( let i = 1; i <= spaceCounter; i += 1 ) {
+      space += ' ';
+    }
+
+    return space;
+  }
+
+  /** 
+   * @name addTabSpaceOrBlank
+   * @description calls a method depending the argument type
+   * 
+   * @param {Boolean} condition 
+   * @param {String} type 
+   * @param {Number} counter
+   * 
+   * @returns String
+   */
+  function addTabSpaceOrBlank(condition, type, counter) {
+    const methods = {
+      tab: newLineAndTabsBuilder,
+      space: newLineAndSpacesBuilder,
+      whiteSpace: whiteSpaceBuilder
+    }
+
+    return condition ? methods[type](counter) : '';
+  }
+
+  /**
+   * @name htmlCommentBuilder
    * @description Creates an html comment with possible tabs
    * @param {string} text
    * @param {number} [withTab=0]
+   * 
    * @returns String
    */
   function htmlCommentBuilder(text, withTab = 0) {
@@ -85,10 +129,12 @@ module.exports = ( function () {
   }
 
   /**
-   * dividerBuilder
+   * @name dividerBuilder
    * @description Some markup that could be used to differentiate
    * sections in CV, makes sense use it when rendering the markup
+   * 
    * @param {string} [className='divider']
+   * 
    * @returns String
    */
   function dividerBuilder(className = 'divider') {
@@ -96,11 +142,13 @@ module.exports = ( function () {
   }
 
   /**
-   * htmlTagBuilder
-   * @description 
+   * @name htmlTagBuilder
+   * @description creates html tags
+   * 
    * @param {*} content
    * @param {*} tag
    * @param {number} [numberTabs=2]
+   * 
    * @returns String
    */
   function htmlTagBuilder( content, tag, numberTabs = 6 ) {
@@ -118,43 +166,17 @@ module.exports = ( function () {
     }, '' );
   }
 
-  function addTabSpaceOrBlank(condition, type, counter) {
-    const method = type === 'tab' ? newLineAndTabsBuilder : newLineAndSpacesBuilder;
-
-    return condition ? method(counter) : '';
-  }
-
+  /**
+   * @name isLastItem
+   * @description Checks if actual index is the last item in an Array
+   * 
+   * @param {Array} array 
+   * @param {Number} index
+   *
+   * @returns Boolean
+   */
   function isLastItem(array, index) {
     return (index + 1) === array.length;
-  }
-
-
-
-  const oneTab = newLineAndTabsBuilder( 1 );
-  const twoTabs = newLineAndTabsBuilder( 2 );
-  const threeTabs = newLineAndTabsBuilder( 3 );
-
-  function educationBuilder( education ) {
-    const content = education.reduce(( acc, curr, index ) => {
-      const addTabs = addTabSpaceOrBlank((index !== 0), 'tab', 2);
-      const hasDetail = curr.detail ? `${threeTabs}    <em class="resume__education-detail">${curr.detail}</em>` : '';
-      const liTag = 'li';
-      const spanTag = 'span';
-
-      acc += `${addTabs}<${liTag}>
-              <${spanTag}>
-                ${curr.name}${hasDetail}
-              </${spanTag}>
-            </${liTag}>`
-
-      return acc;
-    }, '' );
-
-    return `  <section class="resume__education-item">
-          <ul class="resume__main-list">
-            ${content}
-          </ul>
-        </section>${oneTab}`;
   }
 
   return {
@@ -165,6 +187,6 @@ module.exports = ( function () {
     dividerBuilder,
     addTabSpaceOrBlank,
     isLastItem,
-    educationBuilder,
+    whiteSpaceBuilder
   };
 }());

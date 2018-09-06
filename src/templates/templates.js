@@ -1,15 +1,16 @@
 import {
   htmlTagBuilder,
-  newLineAndTabsBuilder,
+  whiteSpaceBuilder,
   newLineAndSpacesBuilder,
   isLastItem,
   addTabSpaceOrBlank
 } from '../utils';
 
 /**
- * headTemplate
+ * @name headTemplate
  * @description Head tag builder that contains most used meta tags
- *
+ * @export
+ * 
  * @param {Object} {
  *   description = meta tag for description,
  *   keywords = meta tag for keywords,
@@ -36,8 +37,9 @@ export function headTemplate({
 }
 
 /**
- * asideItemTemplate
- * @description Aside Item builder
+ * @name asideItemTemplate
+ * @description Aside section template
+ * @export
  * 
  * @param {Array} arrayDetails
  * 
@@ -63,11 +65,13 @@ export function asideItemTemplate(arrayDetails) {
 }
 
 /**
- * summaryTemplate
- * @description Your personnal summary template
+ * @name summaryTemplate
+ * @description Personnal summary section template
  * @export
+ * 
  * @param {Array} content
  * @param {String} tagName
+ * 
  * @returns String
  */
 export function summaryTemplate(content, tagName) {
@@ -75,10 +79,12 @@ export function summaryTemplate(content, tagName) {
 }
 
 /**
- * experienceTemplate
- * @description Extracts info from Array of objects
+ * @name experienceTemplate
+ * @description Experience section template
+ * @export
  *
  * @param {Array} experiences
+ * 
  * @returns String
  */
 export function experienceTemplate( experiences ) {
@@ -104,11 +110,46 @@ export function experienceTemplate( experiences ) {
 }
 
 /**
- * skillsTemplate
- * @description Footer tag template
+ * @name educationTemplate
+ * @description Education section template
  * 
+ * @param {Array} education
+ * 
+ * @returns String 
+ */
+export function educationTemplate( education ) {
+  const twoSpaces = whiteSpaceBuilder( 2 );
+  const eighteenSpaces = newLineAndSpacesBuilder( 18 );
+
+  const content = education.reduce(( acc, curr, index ) => {
+    const addSpaces = addTabSpaceOrBlank((index !== 0), 'space', 14);
+    const hasDetail = curr.detail ? `${eighteenSpaces}<em class="resume__education-detail">${curr.detail}</em>` : '';
+    const liTag = 'li';
+    const spanTag = 'span';
+
+    acc += `${twoSpaces}${addSpaces}<${liTag}>
+              <${spanTag}>
+                ${curr.name}${hasDetail}
+              </${spanTag}>
+            </${liTag}>`
+
+    return acc;
+  }, '' );
+
+  return `${twoSpaces}<section class="resume__education-item">
+          <ul class="resume__main-list">
+          ${content}
+          </ul>
+        </section>`;
+}
+
+/**
+ * @name skillsTemplate
+ * @description Skills section template
  * @export
+ * 
  * @param {String} skills
+ * 
  * @returns String
  */
 export function skillsTemplate( skills ) {
@@ -116,26 +157,37 @@ export function skillsTemplate( skills ) {
   const skillsPerRow = Math.floor( splitSkills.length / 5 );
   let tableRows = '';
   let count = splitSkills.length;
+  let hasIterated = false;
 
   while ( count > 0 ) {
     const firstItems = splitSkills.splice( 0, skillsPerRow );
     const tdItems = htmlTagBuilder( firstItems, 'td', 12 );
-    const addSpaces = addTabSpaceOrBlank((count / skillsPerRow > 1), 'space');
-    const addTabs = addTabSpaceOrBlank((count !== splitSkills.length), 'space', 10);
-    
+    const addTabs = addTabSpaceOrBlank(
+      hasIterated,
+      'whiteSpace',
+      10
+    );
+    const addSpaces = addTabSpaceOrBlank(
+      (count / skillsPerRow > 1),
+      'space',
+      null
+    );
+
     tableRows += `${addTabs}<tr>
             ${tdItems}
           </tr>${addSpaces}`;
     
     count -= skillsPerRow;
+    hasIterated = true;
   }
 
   return tableRows;
 }
 
 /**
- * footerContentTemplate
+ * @name footerContentTemplate
  * @description Footer tag template
+ * @export
  *
  * @param {Object} {
  *   author = author name
