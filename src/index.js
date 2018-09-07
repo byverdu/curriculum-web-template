@@ -14,6 +14,8 @@ import './sass/main.scss';
 prismThemeLoader(prismTheme);
 
 document.addEventListener( 'DOMContentLoaded', function contentLoaded() {
+  prettyLetters( '#headerTitle' ); // eslint-disable-line
+  
   const contentMarkup = document.getElementById( 'content' );
   const renderContent = document.getElementById( 'renderContent' );
   const { textBtn: {
@@ -22,37 +24,25 @@ document.addEventListener( 'DOMContentLoaded', function contentLoaded() {
     }
   } = globalText;
 
-  prettyLetters( '#headerTitle' ); // eslint-disable-line
+  // Appending content to the DOM
+  contentMarkup.innerHTML = headAndBody;
+  renderContent.innerHTML = renderContent.innerHTML.concat(body);
 
+  // adding year to Footer
+  document.querySelector( '.js-footer-year' ).textContent = new Date().getFullYear();
+  
   document.getElementById( 'renderButton' ).addEventListener( 'click', function renderButtonClicked( event ) {
     const markup = document.querySelector( 'pre.language-markup' );
-    const title = document.getElementById( 'headerTitle' );
-    const yearTarget = document.querySelector( '.js-footer-year' );
     const isHidden = markup.className.includes( 'is-hidden' );
-    const eventTarget = event.target;
-    const textButton = isHidden ? `${asHtml}` : `${asCode}`;
 
+    // Change button text
+    event.target.textContent = isHidden ? `${asHtml}` : `${asCode}`;
 
-    eventTarget.textContent = textButton;
-    yearTarget.textContent = new Date().getFullYear();
-    eventTarget.blur();
-
-    if ( isHidden ) {
-      renderContent.classList.toggle( 'is-hidden' );
-      markup.classList.toggle( 'is-hidden' );
-      title.classList.toggle( 'is-hidden' );
-      document.body.classList.toggle( 'theme' );
-      document.body.removeAttribute( 'class' );
-    } else {
-      title.classList.toggle( 'is-hidden' );
-      renderContent.classList.toggle( 'is-hidden' );
-      markup.classList.toggle( 'is-hidden' );
-      document.body.classList.toggle( 'theme', true );
-    }
+    // Show or hide prism content or rendered
+    renderContent.classList.toggle( 'is-hidden' );
+    markup.classList.toggle( 'is-hidden' );
+    document.body.classList.toggle( 'theme' );
 
     document.removeEventListener( 'click', renderButtonClicked );
   });
-
-  contentMarkup.innerHTML = headAndBody;
-  renderContent.innerHTML = body;
 });

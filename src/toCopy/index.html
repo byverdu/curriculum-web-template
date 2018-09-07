@@ -32,28 +32,28 @@
   </title>
 </head>
 <body>
+  <div class="sticky-container">
+    <button
+      id="renderButton"
+      class="sticky-container-button"
+    >
+      <%= htmlWebpackPlugin.options.textBtn %>
+    </button>
+  </div>
   <section class="resume">
-    <header class="resume__header">
-      <button
-        id="renderButton"
-        class="resume__header-button"
-      >
-        <%= htmlWebpackPlugin.options.textBtn %>
-      </button>
-      <h1
-        class="resume__header-title is-hidden"
-        id="headerTitle"
-      >
-        <%= htmlWebpackPlugin.options.description %>
-      </h1>
-    </header>
     <section
-      id="renderContent"
-      class="resume__content is-hidden"
-    ></section>
-  </section>
-  <section>
-
+    id="renderContent"
+    class="resume__content is-hidden"
+    >
+      <header class="resume__header">
+        <h1
+          class="resume__header-title"
+          id="headerTitle"
+        >
+          <%= htmlWebpackPlugin.options.description %>
+        </h1>
+      </header>
+    </section>
   </section>
   <div class="tags-content">
     <script
