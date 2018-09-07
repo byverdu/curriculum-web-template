@@ -22,6 +22,30 @@ module.exports = ( function () {
       this.message += ` ${fncName} expects at least ${numberArgs} arguments`;
     }
   }
+
+  /**
+   * Error class for wrong type of arguments
+   * @class WrongNumberArgsError
+   * @extends {ValidationError}
+   */
+  class WrongTypeArgsError extends ValidationError {
+    constructor(fncName, typeArg) {
+      super()
+      this.message += ` ${fncName} expects a ${typeArg} argument`;
+    }
+  }
+
+  /**
+   * Error class for wrong value of arguments
+   * @class WrongNumberArgsError
+   * @extends {ValidationError}
+   */
+  class WrongValueArgsError extends ValidationError {
+    constructor(fncName, typeArg) {
+      super()
+      this.message += ` ${typeArg} argument is not a valid value for ${fncName}`;
+    }
+  }
   
   /**
    * @name newLineAndTabsBuilder
@@ -33,16 +57,10 @@ module.exports = ( function () {
    */
   function newLineAndTabsBuilder( numberTabs ) {
     if (isNaN(Number(numberTabs))) {
-      return '';
+      throw new WrongTypeArgsError('newLineAndTabsBuilder', 'Number');
     }
 
-    let newLine = '\n';
-
-    for ( let i = 1; i <= numberTabs; i += 1 ) {
-      newLine += '\t';
-    }
-
-    return newLine;
+    return '\n'.concat('\t'.repeat(numberTabs));
   }
 
   /**
@@ -55,37 +73,29 @@ module.exports = ( function () {
    */
   function newLineAndSpacesBuilder( numberSpaces = 6 ) {
     if (isNaN(Number(numberSpaces))) {
-      return '';
+      throw new WrongTypeArgsError('newLineAndSpacesBuilder', 'Number');
     }
 
-    let newLine = '\n';
-
-    for ( let i = 1; i <= numberSpaces; i += 1 ) {
-      newLine += ' ';
-    }
-
-    return newLine;
+    return '\n'.concat(' '.repeat(numberSpaces));
   }
 
   /**
    * @name whiteSpaceBuilder
    * @description generates white space depending as per argument passed
    * 
-   * @param {Number} spaceCounter
+   * @param {Number} numberSpaces
    * 
    * @returns String
    */
-  function whiteSpaceBuilder(spaceCounter) {
+  function whiteSpaceBuilder(numberSpaces) {
     if (arguments.length < 1) {
       throw new WrongNumberArgsError('whiteSpaceBuilder', 1);
     }
-    let space = '';
-
-    for ( let i = 1; i <= spaceCounter; i += 1 ) {
-      space += ' ';
+    if (isNaN(Number(numberSpaces))) {
+      throw new WrongTypeArgsError('whiteSpaceBuilder', 'Number');
     }
 
-    return space;
+    return ''.concat(' '.repeat(numberSpaces));
   }
 
   /** 
@@ -100,10 +110,16 @@ module.exports = ( function () {
    * @returns String
    */
   function addTabSpaceOrBlank(condition, type, counter) {
+    if (arguments.length < 2) {
+      throw new WrongNumberArgsError('addTabSpaceOrBlank', 2);
+    }
     const methods = {
       tab: newLineAndTabsBuilder,
       space: newLineAndSpacesBuilder,
       whiteSpace: whiteSpaceBuilder
+    }
+    if (!Object.keys(methods).includes(type)) {
+      throw new WrongValueArgsError('addTabSpaceOrBlank', type);
     }
 
     return condition ? methods[type](counter) : '';
@@ -118,15 +134,9 @@ module.exports = ( function () {
    * @returns String
    */
   function htmlCommentBuilder(text, withTab = 0) {
-    let tempTab = '';
-
-    if (withTab > 0) {
-      for ( let i = 1; i <= withTab; i += 1 ) {
-        tempTab += '\t';
-      }
-    }
+    const tabs = ''.concat('\t'.repeat(withTab));
     
-    return `${tempTab}<!-- ${text} -->`;
+    return `${tabs}<!-- ${text} -->`;
   }
 
   /**
