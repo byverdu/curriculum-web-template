@@ -1,4 +1,5 @@
 // Variables
+$custom:   #000;
 $black: #282a36;
 $grey: #6272a4;
 $grey-2: #44475a;
@@ -96,4 +97,12 @@ $prism-themes: (
     'title-color-2': #919e6b,
     'td-shadow': #AC885B
   ),
+  custom: (
+    'bg': $custom,
+    'text-color': $custom,
+    'bg-btn': $custom,
+    'title-color': $custom,
+    'title-color-2': $custom,
+    'td-shadow': $custom,
+  )
 ) !default;

@@ -7,9 +7,9 @@ Data entry point for all the config and content that will be used
 // prism theme, defaults to dracula a custom theme
 // possible values are prism, coy, dark, funky, okaidia, solorizedlight, tomorrow, twilight
 const prismThemes = [
-  'dracula', 'prism', 'coy', 'dark', 'funky', 'okaidia', 'solarizedlight', 'tomorrow', 'twilight'
+  'dracula', 'prism', 'coy', 'dark', 'funky', 'okaidia', 'solarizedlight', 'tomorrow', 'twilight', 'custom'
 ];
-export const prismTheme = 'solarizedlight';
+export const prismTheme = 'dracula';
 export const isValidPrismTheme = () => {
   if (!prismThemes.includes(prismTheme)) {
     throw Error(`\x1b[31m ${prismTheme} is not a valid prism theme, choose one from the "prismThemes" array in "${__dirname}" \x1b[0m`);
@@ -24,11 +24,17 @@ export const isValidPrismTheme = () => {
  * @returns stylesheet
  */
 export function prismThemeLoader(themeToLoad) {
-  if (themeToLoad === 'dracula') {
-    return require('../sass/themes/prism-dracula.css');
-  } else {
-    const tempTheme = themeToLoad === 'prism' ? themeToLoad : `prism-${themeToLoad}`;
-    return require(`prismjs/themes/${tempTheme}.css`);
+
+  switch(themeToLoad) {
+    case 'dracula':
+      require('../sass/themes/prism-dracula.scss');
+      break;
+    case 'custom':
+      require('../sass/themes/prism-custom.scss');
+      break;
+    default:
+      const tempTheme = themeToLoad === 'prism' ? themeToLoad : `prism-${themeToLoad}`;
+      require(`prismjs/themes/${tempTheme}.css`);
   }
 }
 
@@ -109,18 +115,18 @@ export const experiencesContent = [
 // Keep the format, i.e. Array of of Ojects with this shape
 export const educationContent = [
   {
-    name: 'Makers Academy Aug 2014 – Oct 2014, London (UK)',
-    detail: 'A twelve week web programming Bootcamp, focused on learning full stack web development using cutting edge technologies'
+    name: 'Corned beef prosciutto doner andouille t-bone jowl pancetta pork',
+    detail: 'Corned beef prosciutto doner andouille'
   },
   {
-    name: 'JavaScript course at UOC Sept 2012 - Dec 2012, Barcelona (Spain)',
-    detail: 'Front End development trimester at Open University Catalonia focused on Javascript'
+    name: 'Corned beef prosciutto doner andouille t-bone jowl pancetta pork',
+    detail: 'Front End development'
   },
   {
-    name: 'Two years of vocational training in Electricity and Network installations. 2005-2007, Barcelona (Spain)'
+    name: 'Corned beef prosciutto doner andouille t-bone jowl pancetta pork'
   },
   {
-    name: '3rd grade of B.U.P. 1994-1998, Barcelona (Spain). Equivalent to A Levels in the UK'
+    name: 'Corned beef prosciutto doner andouille t-bone jowl pancetta pork'
   }
 ];
 

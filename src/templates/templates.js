@@ -119,15 +119,15 @@ export function experienceTemplate( experiences ) {
  */
 export function educationTemplate( education ) {
   const twoSpaces = whiteSpaceBuilder( 2 );
-  const eighteenSpaces = newLineAndSpacesBuilder( 18 );
+  const sixteenSpaces = newLineAndSpacesBuilder( 16 );
 
   const content = education.reduce(( acc, curr, index ) => {
-    const addSpaces = addTabSpaceOrBlank((index !== 0), 'space', 14);
-    const hasDetail = curr.detail ? `${eighteenSpaces}<em class="resume__education-detail">${curr.detail}</em>` : '';
+    const addLiSpaces = addTabSpaceOrBlank((index !== 0), 'space', 12);
+    const hasDetail = curr.detail ? `${sixteenSpaces}<em class="resume__education-detail">${curr.detail}</em>` : '';
     const liTag = 'li';
     const spanTag = 'span';
 
-    acc += `${twoSpaces}${addSpaces}<${liTag}>
+    acc += `${twoSpaces}${addLiSpaces}<${liTag}>
               <${spanTag}>
                 ${curr.name}${hasDetail}
               </${spanTag}>
