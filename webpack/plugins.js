@@ -2,7 +2,6 @@ import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import WriteFilePlugin from 'write-file-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import HtmlWebpackInlineSourcePlugin from 'html-webpack-inline-source-plugin';
 import GoogleFontsPlugin from '@beyonk/google-fonts-webpack-plugin';
@@ -39,7 +38,7 @@ const prodPlugins = [
   new HtmlWebpackInlineSourcePlugin(),
 ];
 
-const plugins = process.env.NODE_ENV === 'development' ?
+const plugins = devMode ?
   devPlugins :
   prodPlugins;
 
@@ -50,9 +49,6 @@ module.exports = [
     filename: '[name].css' ,
     chunkFilename: '[id].css',
   }),
-  new CopyWebpackPlugin([
-    'src/toCopy'
-  ]),
   new HtmlWebpackPlugin({ 
     template: 'src/toCopy/index.html',
     description: headTag.description,
@@ -61,7 +57,8 @@ module.exports = [
     textBtn: globalText.textBtn.asHtml,
     inlineSource: '.(css|js)$',
     inject: 'head',
-    minify: true
+    minify: true,
+    favicon: 'src/toCopy/favicon.png'
   }),
   ...plugins
 ];
