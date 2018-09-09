@@ -102,7 +102,7 @@ export const summaryContent = [
 
 
 // Content for user experiences
-// Keep the format, i.e. Array of of Ojects with this shape
+// Keep the format, i.e. Array of Ojects with this shape
 // [items], is a string where the delimeter is a dot '.'
 export const experiencesContent = [
   {
