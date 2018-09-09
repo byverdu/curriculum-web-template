@@ -4,6 +4,7 @@ $background: get-theme-values($prismTheme, 'bg');
 $title-color: get-theme-values($prismTheme, 'title-color');
 $title-color-2: get-theme-values($prismTheme, 'title-color-2');
 $td-shadow: get-theme-values($prismTheme, 'td-shadow');
+$rootClass: $rootCssClass;
 
 * {
   padding: 0;
@@ -87,7 +88,7 @@ body {
   }
 }
 
-.resume {
+.#{$rootClass} {
   max-width: 900px;
   min-width: 360px;
   margin: 0 auto;

@@ -6,6 +6,10 @@ import {
   addTabSpaceOrBlank
 } from '../utils';
 
+import {
+  rootCssClass
+} from '../../src/config';
+
 /**
  * @name headTemplate
  * @description Head tag builder that contains most used meta tags
@@ -53,9 +57,9 @@ export function asideItemTemplate(arrayDetails) {
     const listItems = htmlTagBuilder( details, 'li', 12 );
     const addTab = addTabSpaceOrBlank(!isLastItem(arrayDetails, index), 'tab', 2);
   
-    aside += `<nav class="resume__aside-nav">
-          <h4 class="resume__aside-title">${headerTitle}</h4>
-          <ul class="resume__aside-list ${className}">
+    aside += `<nav class="${rootCssClass}__aside-nav">
+          <h4 class="${rootCssClass}__aside-title">${headerTitle}</h4>
+          <ul class="${rootCssClass}__aside-list ${className}">
             ${listItems}
           </ul>
         </nav>${addTab}`;
@@ -97,10 +101,10 @@ export function experienceTemplate( experiences ) {
     const listItems = htmlTagBuilder( items.split( '.' ), 'li', 14);
     const addTab = addTabSpaceOrBlank(!isLastItem(experiences, index), 'tab', 1);
 
-    template += `${oneTab}<section class="resume__experience-item">
-            <h3 class="resume__main-title">${company}</h3>
-            <h4 class="resume__main-title">${date}</h4>
-            <ul class="resume__main-list">
+    template += `${oneTab}<section class="${rootCssClass}__experience-item">
+            <h3 class="${rootCssClass}__main-title">${company}</h3>
+            <h4 class="${rootCssClass}__main-title">${date}</h4>
+            <ul class="${rootCssClass}__main-list">
               ${listItems}
             </ul>
           </section>${addTab}`
@@ -123,7 +127,7 @@ export function educationTemplate( education ) {
 
   const content = education.reduce(( acc, curr, index ) => {
     const addLiSpaces = addTabSpaceOrBlank((index !== 0), 'space', 12);
-    const hasDetail = curr.detail ? `${sixteenSpaces}<em class="resume__education-detail">${curr.detail}</em>` : '';
+    const hasDetail = curr.detail ? `${sixteenSpaces}<em class="${rootCssClass}__education-detail">${curr.detail}</em>` : '';
     const liTag = 'li';
     const spanTag = 'span';
 
@@ -136,8 +140,8 @@ export function educationTemplate( education ) {
     return acc;
   }, '' );
 
-  return `${twoSpaces}<section class="resume__education-item">
-          <ul class="resume__main-list">
+  return `${twoSpaces}<section class="${rootCssClass}__education-item">
+          <ul class="${rootCssClass}__main-list">
           ${content}
           </ul>
         </section>`;
@@ -195,7 +199,7 @@ export function skillsTemplate( skills ) {
  * @returns String
  */
 export function footerTemplate ({author}) {
-  return `<footer class="resume__footer">
-        <p class="resume__footer-copy">Made with <span>&lt;3</span> by ${author}, <b class="js-footer-year">2018</b></p>
+  return `<footer class="${rootCssClass}__footer">
+        <p class="${rootCssClass}__footer-copy">Made with <span>&lt;3</span> by ${author}, <b class="js-footer-year">2018</b></p>
       </footer>`;
 }

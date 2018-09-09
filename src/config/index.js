@@ -41,6 +41,25 @@ export function prismThemeLoader(themeToLoad) {
 
 /*********    Content For templates Config    *********/
 
+// Global text
+export const globalText = {
+  textBtn: {
+    asCode: 'Render as Prism',
+    asHtml: 'Render as HTML'
+  }
+}
+
+// Title for the different sections
+export const sectionTitles = {
+  summary: 'Summary',
+  experience: 'Experience',
+  education: 'Education',
+  skills: 'Skills'
+};
+
+// Main css class name
+export const rootCssClass = 'resume';
+
 // Content for <meta> tags in <head>
 export const headContent = {
   description: 'John Doe Resume',
@@ -72,14 +91,6 @@ export const contactDetailsContent = [
     className: 'dev-icons'
   }
 ];
-
-// Title for the different section
-export const sectionTitles = {
-  summary: 'Summary',
-  experience: 'Experience',
-  education: 'Education',
-  skills: 'Skills'
-};
 
 // Content for user summary
 // Keep the format, i.e. Array of Strings
@@ -137,12 +148,4 @@ export const skillsContent = 'ES6.React, Angular and Aurelia.HTML5.NodeJS and mo
 // Content for <footer> tag
 export const footerContent = {
   author: '@DoeJohn'
-}
-
-// Global text
-export const globalText = {
-  textBtn: {
-    asCode: 'Render as Prism',
-    asHtml: 'Render as HTML'
-  }
 }

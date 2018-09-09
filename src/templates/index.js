@@ -7,6 +7,7 @@ import {
   skillsContent,
   educationContent,
   footerContent,
+  rootCssClass
 } from '../../src/config';
 
 import {
@@ -40,40 +41,40 @@ const education = educationTemplate(educationContent);
 const footer = footerTemplate(footerContent);
 
 const body = `${commentFor.contactDetails}
-      <aside class="resume__aside">
+      <aside class="${rootCssClass}__aside">
         ${aside}
       </aside>
 
       ${dividerBuilder()}
 
-      <main class="resume__main">
+      <main class="${rootCssClass}__main">
         ${commentFor.summary}
-        <section class="resume__summary">
-          <h2 class="resume__main-title">${sectionTitles.summary}</h2>
+        <section class="${rootCssClass}__summary">
+          <h2 class="${rootCssClass}__main-title">${sectionTitles.summary}</h2>
           ${summary}
         </section>
       
         ${dividerBuilder()}
 
         ${commentFor.experience}
-        <section class="resume__experience">
-          <h2 class="resume__main-title">${sectionTitles.experience}</h2>
+        <section class="${rootCssClass}__experience">
+          <h2 class="${rootCssClass}__main-title">${sectionTitles.experience}</h2>
           ${experiences}
         </section>
 
         ${dividerBuilder()}
 
         ${commentFor.education}
-        <section class="resume__education">
-          <h2 class="resume__main-title">${sectionTitles.education}</h2>
+        <section class="${rootCssClass}__education">
+          <h2 class="${rootCssClass}__main-title">${sectionTitles.education}</h2>
         ${education}
         </section>
 
         ${dividerBuilder()}
 
         ${commentFor.skills}
-        <h2 class="resume__main-title">${sectionTitles.skills}</h2>
-        <table class="resume__skills">
+        <h2 class="${rootCssClass}__main-title">${sectionTitles.skills}</h2>
+        <table class="${rootCssClass}__skills">
           ${skills}
         </table>
       </main>

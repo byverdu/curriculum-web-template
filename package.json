@@ -8,6 +8,7 @@
     "start": "gulp start",
     "build": "NODE_ENV=production webpack --config webpack.config.babel.js",
     "dev": "NODE_ENV=development webpack-dev-server",
+    "dev:watch": "NODE_ENV=development nodemon --exec 'webpack-dev-server' --ignore ./dist",
     "test": "jest --watch"
   },
   "jest": {
@@ -27,6 +28,7 @@
     "@babel/preset-env": "7.0.0",
     "@babel/register": "7.0.0",
     "@beyonk/google-fonts-webpack-plugin": "0.5.0",
+    "@epegzz/sass-vars-loader": "3.4.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "8.2.5",
     "babel-jest": "23.4.2",

@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const prismTheme = require('../src/config').prismTheme;
-const devMode = process.env.NODE_ENV !== 'production';
+import {
+  prismTheme, rootCssClass
+} from '../src/config'
 
 module.exports = [
   {
@@ -20,9 +21,14 @@ module.exports = [
         loader: 'css-loader',
       }, {
         loader: "sass-loader",
-        options: {
-          data: `$prismTheme: ${prismTheme};`
+      },
+      { loader: "@epegzz/sass-vars-loader", options: {
+        syntax: 'scss',
+        vars: {
+          prismTheme: `${prismTheme}`,
+          rootCssClass: `${rootCssClass}`
         }
+      }
       }
     ],
   },
