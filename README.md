@@ -56,6 +56,8 @@ Afterwards the process to have it all running will be the same that if you were 
 
 This repo uses webpack to bundle all the files and you can find them under the `./dist` folder. All the `js` and `css` files are added inline in the html file and essentially you will only need the `index.html` and `favicon.*`;
 
+The `js` entry point can be found at `./src/index.js`, here is where the content is appended to the DOM, the styles are imported and some event listeners are added to the DOM too.
+
 For simplicity you will not get any webserver with this repo so you need to find your way in order to serve the page.
 
 ### Data entry point

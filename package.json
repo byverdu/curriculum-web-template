@@ -1,10 +1,10 @@
 {
   "name": "cv-web-template",
   "version": "1.0.0",
-  "description": "",
+  "description": "Package that creates a static webpage where you can show a personal resume using PrismJS or a rendered version",
   "private": true,
   "keywords": [
-    "prism", "cv", "curriculum", "web template", "resume"    
+    "prismjs", "cv", "curriculum", "web template", "resume", "template"    
   ],
   "main": "dist/index.html",
   "scripts": {
