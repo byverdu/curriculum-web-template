@@ -5,9 +5,13 @@
 <dd></dd>
 <dt><a href="#WrongNumberArgsError">WrongNumberArgsError</a> ⇐ <code><a href="#ValidationError">ValidationError</a></code></dt>
 <dd></dd>
+<dt><a href="#WrongTypeArgsError">WrongTypeArgsError</a> ⇐ <code><a href="#ValidationError">ValidationError</a></code></dt>
+<dd></dd>
+<dt><a href="#WrongValueArgsError">WrongValueArgsError</a> ⇐ <code><a href="#ValidationError">ValidationError</a></code></dt>
+<dd></dd>
 </dl>
 
-## Members for utils methods
+## Members
 
 <dl>
 <dt><a href="#newLineAndTabsBuilder">newLineAndTabsBuilder</a> ⇒</dt>
@@ -59,6 +63,26 @@ Blueprint class for validation errors
 ### new WrongNumberArgsError()
 Error class for wrong number of arguments
 
+<a name="WrongTypeArgsError"></a>
+
+## WrongTypeArgsError ⇐ [<code>ValidationError</code>](#ValidationError)
+**Kind**: global class  
+**Extends**: [<code>ValidationError</code>](#ValidationError)  
+<a name="new_WrongTypeArgsError_new"></a>
+
+### new WrongTypeArgsError()
+Error class for wrong type of arguments
+
+<a name="WrongValueArgsError"></a>
+
+## WrongValueArgsError ⇐ [<code>ValidationError</code>](#ValidationError)
+**Kind**: global class  
+**Extends**: [<code>ValidationError</code>](#ValidationError)  
+<a name="new_WrongValueArgsError_new"></a>
+
+### new WrongValueArgsError()
+Error class for wrong value of arguments
+
 <a name="newLineAndTabsBuilder"></a>
 
 ## newLineAndTabsBuilder ⇒
@@ -95,7 +119,7 @@ generates white space depending as per argument passed
 
 | Param | Type |
 | --- | --- |
-| spaceCounter | <code>Number</code> | 
+| numberSpaces | <code>Number</code> | 
 
 <a name="addTabSpaceOrBlank"></a>
 
@@ -164,6 +188,7 @@ Checks if actual index is the last item in an Array
 | --- | --- |
 | array | <code>Array</code> | 
 | index | <code>Number</code> | 
+
 
 
 

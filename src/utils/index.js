@@ -25,7 +25,7 @@ module.exports = ( function () {
 
   /**
    * Error class for wrong type of arguments
-   * @class WrongNumberArgsError
+   * @class WrongTypeArgsError
    * @extends {ValidationError}
    */
   class WrongTypeArgsError extends ValidationError {
@@ -37,7 +37,7 @@ module.exports = ( function () {
 
   /**
    * Error class for wrong value of arguments
-   * @class WrongNumberArgsError
+   * @class WrongValueArgsError
    * @extends {ValidationError}
    */
   class WrongValueArgsError extends ValidationError {

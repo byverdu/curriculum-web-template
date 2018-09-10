@@ -51,6 +51,7 @@ module.exports = [
   }),
   new HtmlWebpackPlugin({ 
     template: 'src/toCopy/index.html',
+    favicon: 'src/toCopy/favicon.png',
     description: headTag.description,
     author: headTag.author,
     keywords: headTag.keywords,
@@ -58,7 +59,6 @@ module.exports = [
     inlineSource: '.(css|js)$',
     inject: 'head',
     minify: true,
-    favicon: 'src/toCopy/favicon.png'
   }),
   ...plugins
 ];

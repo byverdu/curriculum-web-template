@@ -1,15 +1,18 @@
 {
-  "name": "curriculum-web-template",
+  "name": "cv-web-template",
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "main": "index.html",
+  "keywords": [
+    "prism", "cv", "curriculum", "web template", "resume"    
+  ],
+  "main": "dist/index.html",
   "scripts": {
-    "start": "gulp start",
     "build": "NODE_ENV=production webpack --config webpack.config.babel.js",
     "dev": "NODE_ENV=development webpack-dev-server",
-    "dev:watch": "NODE_ENV=development nodemon --exec 'webpack-dev-server' --ignore ./dist",
-    "test": "jest --watch"
+    "dev:webpack": "NODE_ENV=development nodemon --exec 'webpack-dev-server' --ignore ./dist",
+    "test": "jest --watch",
+    "postinstall": "bash ./scripts/postinstall.sh"
   },
   "jest": {
     "verbose": true,
