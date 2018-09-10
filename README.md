@@ -18,7 +18,8 @@ How to use this repo, you can either clone it or install it from the npm registr
 > cd curriculum-web-template
 
 
-# By default the "postinstall" script will run "yarn build" after all the packages are installled, you might want to edit all the config files before "yarn install"
+# By default the "postinstall" script will run "yarn build" after all the packages are installled,
+# you might want to edit all the config files before "yarn install"
 
 # if you want to build yourself and skip this step, set  the `skip_postinstall` to true
 > skip_postinstall='yes' yarn install
@@ -56,7 +57,7 @@ Afterwards the process to have it all running will be the same that if you were 
 
 This repo uses webpack to bundle all the files and you can find them under the `./dist` folder. All the `js` and `css` files are added inline in the html file and essentially you will only need the `index.html` and `favicon.*`;
 
-The `js` entry point can be found at `./src/index.js`, here is where the content is appended to the DOM, the styles are imported and some event listeners are added to the DOM too.
+The `js` entry point can be found at [`./src/index.js`](./src/index.js), here is where the content is appended to the DOM, the styles are imported and some event listeners are added to the DOM too.
 
 For simplicity you will not get any webserver with this repo so you need to find your way in order to serve the page.
 
